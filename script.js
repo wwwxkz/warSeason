@@ -82,3 +82,33 @@ class Player {
 }
 
 let p1 = new Player('wwwxkz');
+
+// Rounds basic logic
+
+class Rounds {
+    constructor() {
+        this.round = 0;
+    }
+    nextRound() {
+        this.round += 1;
+        this.verifyWin();
+    }
+    verifyWin() {
+        // Loop thorgh users and verify if someone won,
+        // Checks win just at the end of the round
+        console.log('Won');
+        this.wonScreen();
+    }
+    wonScreen() {
+        // Button for Restart Game
+        this.restartGame();
+        return;
+    }
+    restartGame() {
+        // Verifies if everyone clicked before starting a new game
+        return;
+    }
+}
+
+const game = new Rounds();
+game.nextRound();
