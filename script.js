@@ -100,13 +100,34 @@ class Rounds {
 
 class Menu {
     // Get map instead of countries
-    constructor(countries) {
+    constructor(countries, players) {
         this.countries = countries;
+        this.players = players;
+        this.setCountriesOwner();
         this.getCountries();
     }
     getCountries() {
         Object.keys(this.countries).forEach(key => {
             console.log(key, '- Use country ->', this.countries[key]);
+        });
+    }
+    // Map func
+    setCountriesOwner() {
+        let quotient = Math.floor(this.countries.length / this.players.length);
+        let remainder = this.countries.length % this.players.length;
+        let pkey = 0;
+        let lkey = 0;
+        const randomly = () => Math.random() - 0.5;
+        let randomCountries = [].concat(this.countries).sort(randomly);
+        Object.keys(randomCountries).forEach(key => {
+            if (this.players.length == pkey) {
+                quotient = remainder;
+            }
+            if (key == lkey + quotient) {
+                lkey = key;
+                pkey += 1;
+            }
+            randomCountries[key].setOwner(this.players[pkey]);
         });
     }
     status(id) {
@@ -127,10 +148,9 @@ class Game {
     constructor() {
     }
 }
-
 new Game();
 
-// Set countries basic atributes
+// Set countries
 const argentina = new Country('Argentina');
 const peru = new Country('Peru');
 const brasil = new Country('Brasil');
@@ -139,13 +159,11 @@ argentina.setBorders([brasil, peru]);
 peru.setBorders([argentina, brasil, colombia]);
 brasil.setBorders([argentina, peru, colombia]);
 colombia.setBorders([peru, brasil]);
-// Set players and relates to countries
+// Set players 
 const p1 = new Player('wwwxkz');
 const p2 = new Player('klaus');
-argentina.setOwner(p2);
-peru.setOwner(p2);
-brasil.setOwner(p1);
-colombia.setOwner(p1);
-// Set countries list and opens menu
+// Players / Countries
+const players = [p1, p2];
 const countries = [argentina, brasil, peru, colombia];
-const menu = new Menu(countries);
+// Start Game
+const menu = new Menu(countries, players);
