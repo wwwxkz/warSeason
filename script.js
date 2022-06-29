@@ -1,11 +1,12 @@
-// Countries and maps basic logic
 class Country {
-    constructor(name, borders) {
+    constructor(name) {
         this.name = name;
-        this.borders = borders
-        this.troops = 0;
+        this.troops = 1;
     }
-    atack() {
+    setBorders(borders) {
+        this.borders = borders
+    }
+    borders() {
         return this.borders;
     }
     status() {
@@ -17,48 +18,25 @@ class Country {
     removeTrops(remove) {
         this.troops -= remove;
     }
+    atack(who) {
+        if (this.troops > 1) {
+            Object.keys(this.borders).forEach(key => {
+                if (who == this.borders[key].name) {
+                    this.borders[key].removeTrops(this.rng());
+                } else {
+                    console.log('Not found');
+                }
+            });    
+        } 
+        else {
+            // Display message, can not atack with just one troop
+        } 
+    }
+    rng() {
+        return Math.floor(Math.random() * 4); 
+    }
 }
 
-// Declare all countries and create map
-const argentina = new Country('Argentina', ['Brasil', 'Peru']);
-const brasil = new Country('Brasil', ['Argentina', 'Peru', 'Colombia']);
-const peru = new Country('Peru', ['Argentina', 'Brasil', 'Colombia']);
-const colombia = new Country('Colombia', ['Peru', 'Brasil']);
-
-// Get country atributes and actions
-
-// Argentina
-console.log(argentina.name);
-console.log(argentina.atack());
-// Brasil
-console.log(brasil.name);
-console.log(brasil.atack());
-// Peru
-console.log(peru.name);
-console.log(peru.atack());
-// Colombia
-console.log(colombia.name);
-console.log(colombia.atack());
-
-// Some add and remove troops for testing
-argentina.addTrops(20);
-argentina.removeTrops(5);
-console.log(argentina.status());
-
-brasil.addTrops(15);
-brasil.removeTrops(2);
-console.log(brasil.status());
-
-peru.addTrops(55);
-peru.removeTrops(24);
-console.log(peru.status());
-
-
-colombia.addTrops(22);
-colombia.removeTrops(10);
-console.log(colombia.status());
-
-// User and goals basic logic
 class Player {
     constructor(name) {
         this.name = name;
@@ -80,10 +58,6 @@ class Player {
         console.log(this.goals[Math.floor(Math.random() * 10)]);
     }
 }
-
-let p1 = new Player('wwwxkz');
-
-// Rounds basic logic
 
 class Rounds {
     constructor() {
@@ -110,5 +84,42 @@ class Rounds {
     }
 }
 
-const game = new Rounds();
-game.nextRound();
+class Menu {
+    // Get map instead of countries
+    constructor(countries) {
+        this.countries = countries;
+        this.createMenu();
+    }
+    createMenu() {
+        Object.keys(this.countries).forEach(key => {
+            console.log(key, '- Use country ->', this.countries[key]);
+        });
+    }
+    status(id) {
+        console.log(this.countries[id].status());
+    }
+    addTrops(id, add) {
+        this.countries[id].addTrops(add);
+    }
+    removeTrops(id, remove) {
+        this.countries[id].addTrops(remove);
+    }
+    atack(id, who) {
+        this.countries[id].atack(who);
+    }
+}
+
+// Main
+const argentina = new Country('Argentina');
+const peru = new Country('Peru');
+const brasil = new Country('Brasil');
+const colombia = new Country('Colombia');
+
+argentina.setBorders([brasil, peru]);
+peru.setBorders([argentina, brasil, colombia]);
+brasil.setBorders([argentina, peru, colombia]);
+colombia.setBorders([peru, brasil]);
+
+const countries = [argentina, brasil, peru, colombia];
+
+let menu = new Menu(countries);
