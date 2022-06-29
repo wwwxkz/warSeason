@@ -63,10 +63,12 @@ class Player {
     }
     randomGoal() {
         let goals = [
-            'Conquer 2 countries',
-            'Defeat enemy with color N',
+            'Conquer 3 countries',
+            'Conquer 24 countries',
+            'Conquer the world',
+            'Conquer the world',
         ]
-        return goals[Math.floor(Math.random() * 10)];
+        return goals[Math.floor(Math.random() * 1)];
     }
     setColor(color) {
         this.color = color;
@@ -77,22 +79,57 @@ class Round {
     constructor() {
         this.round = 0;
     }
-    nextRound() {
+    nextRound(players, countries) {
         this.round += 1;
-        this.verifyWin();
+        this.verifyWin(players, countries);
     }
-    verifyWin() {
-        // Loop thorgh users and verify if someone won,
-        // Checks win just at the end of the round
-        console.log('Won');
-        this.wonScreen();
+    verifyWin(players, countries) {
+        // Conquer 3 countries
+        // Conquer 24 countries
+        let countriesNumber = 0;
+        // Conquer the world
+        let won = 0;
+        players.forEach(player => {
+            if (player.goal == 'Conquer 3 countries') {
+                countries.forEach(country => {
+                    if (country.owner == player) {
+                        countriesNumber += 1;
+                    }
+                });
+                if (countriesNumber == 3) {
+                    this.wonScreen(player);
+                } 
+            }
+            if (player.goal == 'Conquer 24 countries') {
+                countries.forEach(country => {
+                    if (country.owner == player) {
+                        countries += 1;
+                    }
+                });
+                if (countries == 24) {
+                    this.wonScreen(player);
+                } 
+            }
+            if (player.goal == 'Conquer the world') {
+                countries.forEach(country => {
+                    if (country.owner != player) {
+                        won = 1;
+                    }
+                });
+                if (won == 0) {
+                    this.wonScreen(player);
+                } 
+            }
+        });
     }
-    wonScreen() {
+    wonScreen(player) {
+        console.log(player, ' Won');
         this.restartGame();
         return;
     }
     restartGame() {
         // Verifies if everyone clicked before starting a new game
+        throw new Error("Restarting");
         return;
     }
 }
@@ -109,9 +146,9 @@ class Menu {
     getCountries() {
         Object.keys(this.countries).forEach(key => {
             //console.log(key, '- Use country ->', this.countries[key]);
-            console.log(key, '- Use country ->', this.countries[key].name);
-            console.log(key, '- Use country ->', this.countries[key].owner);
-            console.log(key, '- Use country ->', this.countries[key].troops);
+            console.log(key, '- Country name ->', this.countries[key].name);
+            console.log('# Country owner ->', this.countries[key].owner);
+            console.log('# Country troops ->', this.countries[key].troops);
         });
     }
     setPlayersColor() {
@@ -182,28 +219,30 @@ class Game {
         this.turn();
     }
     turn() {
-        this.players.forEach(player => {
-            let countryInput = prompt(player.name + " - Add N trops to which Country?");
-            this.countries.forEach(country => {
-                if (country.name == countryInput) {
-                    if (country.owner == player) {
-                        let amount = prompt(player.name + " - How many?");
-                        country.addTrops(parseInt(amount));
+        while (true) {
+            this.players.forEach(player => {
+                let countryInput = prompt(player.name + " - Add N trops to which Country?");
+                this.countries.forEach(country => {
+                    if (country.name == countryInput) {
+                        if (country.owner == player) {
+                            let amount = prompt(player.name + " - How many?");
+                            country.addTrops(parseInt(amount));
+                        }
                     }
-                }
-            });
-            countryInput = prompt(player.name + " - With which country you want to atack?");
-            let who = prompt(player.name + " - Which you want to atack?");
-            this.countries.forEach(country => {
-                if (country.name == countryInput) {
-                    if (country.owner == player) {
-                        country.atack(who);
+                });
+                countryInput = prompt(player.name + " - With which country you want to atack?");
+                let who = prompt(player.name + " - Which you want to atack?");
+                this.countries.forEach(country => {
+                    if (country.name == countryInput) {
+                        if (country.owner == player) {
+                            country.atack(who);
+                        }
                     }
-                }
+                });
+                this.menu.getCountries()
             });
-            this.menu.getCountries()
-        });
-        this.round.nextRound();
+            this.round.nextRound(this.players, this.countries);
+        }
     }
 }
 

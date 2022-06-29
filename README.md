@@ -49,9 +49,8 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 
 ### Coming
 
-- Troops by round
 - Map class instead of countries list
-- Goals
-- Game class
-- Server / Client
+- Troops by round
+- Atack as long as you can
 - Frontend
+- Server / Client
