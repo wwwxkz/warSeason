@@ -49,8 +49,6 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 
 ### Coming
 
-- RNG for country owner
-- Country colors
 - Troops by round
 - Map class instead of countries list
 - Goals

@@ -57,8 +57,8 @@ class Player {
         this.name = name;
         this.goal = this.randomGoal();
     }
-    randomGoal () {
-        this.goals = [
+    randomGoal() {
+        let goals = [
             'Goal 1',
             'Goal 2',
             'Goal 3',
@@ -70,7 +70,10 @@ class Player {
             'Goal 9',
             'Goal 10',
         ]
-        return this.goals[Math.floor(Math.random() * 10)];
+        return goals[Math.floor(Math.random() * 10)];
+    }
+    setColor(color) {
+        this.color = color;
     }
 }
 
@@ -103,6 +106,7 @@ class Menu {
     constructor(countries, players) {
         this.countries = countries;
         this.players = players;
+        this.setPlayersColor();
         this.setCountriesOwner();
         this.getCountries();
     }
@@ -110,6 +114,25 @@ class Menu {
         Object.keys(this.countries).forEach(key => {
             console.log(key, '- Use country ->', this.countries[key]);
         });
+    }
+    setPlayersColor() {
+        let colors = [
+            '#FFFACD',
+            '#B22222',
+            '#FF7F50',
+            '#F0F8FF',
+            '#000000',
+            '#0000FF',
+            '#808080',
+            '#FF69B4',
+            '#800080',
+            '#FF0000',
+        ]
+        const randomly = () => Math.random() - 0.5;
+        let randomColors = [].concat(colors).sort(randomly);
+        Object.keys(this.players).forEach(key => {
+            this.players[key].setColor(randomColors[key]);
+        })
     }
     // Map func
     setCountriesOwner() {
