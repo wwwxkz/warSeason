@@ -6,29 +6,32 @@ Risk is a strategy board game of diplomacy, conflict and conquest for two to six
 <br>
 -> From wikipedia <a href="https://en.wikipedia.org/wiki/Risk_(game)">Source</a>
 <br><br>
-Based on Board Game "War" by Grow, widely know as "Risk" or "La Conquête du Monde"
+Based on Board Game "War" by Grow, widely known as "Risk" or "La Conquête du Monde"
 
 ### Why
 
-As a group of friends were playing War in its online version, we came across with many ideas and improvements to the game, here is a quick list and goals we want to adress with this project:
+As a group of friends was playing War in its online version, we came across many ideas and improvements to the game, here is a quick list and goals we want to address with this project:
 
 - Team mode <br>
-  When playing with 5 or 6 players we often created teams and tried to win with one goal or another, having a   Team mode makes this interaction easier and just one Goal for both
+  When playing with 5 or 6 players we often created teams and tried to win with one goal or another, having a Team mode and just one Goal for both makes this interaction easier
   
 - Alliances <br>
   Having a contract for X time of rounds is a fair and simple way to set alliances and encourage conversations   while playing the game
   
 - Winning just at the end of the round <br>
-  Giving players time to adress an enemy wins makes the game more dinamic, as the enemy has to plan well his     last round, and the players can adress the situation together as everyone knows what is about happen
+  Giving players time to address an enemy wins makes the game more dynamic, as the enemy has to plan well his     last round, and the players can address the situation together as everyone knows what is about to happen
   
 - More maps <br>
-  World map and Roman empire is awesome, but South/North america and other regions would be even better
+  World map and Roman empire are awesome, but South/North America and other regions would be even better
   
 - HTML5 and Javascript ES6 <br>
-  War was made in Flash, having a HTML5 and ES6 option is not just faster, but more reliable and compatible     with new version of browsers deactivating Flash
+  War was made in Flash, having an HTML5 and ES6 option is not just faster, but more reliable and compatible with new versions of browsers deactivating Flash
   
 - Events <br>
-  Wars, Tsunamis, Pandemics, and world events makes the game more dinamic and fun to play as the game is never   predictable and no one have sure of winning a game
+  Wars, Tsunamis, Pandemics, and world events make the game more dynamic and fun to play as the game is never   predictable and no one has sure of winning a game
+
+- Connections problems <br>
+  Whenever someone lost connection and the round passes, the troops got from the round are never placed in a country and it gets lost in the next round. Saving it for the next round does not alter the gameplay and makes the reconnection process less painful
 
 MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone together
 <br>
@@ -47,6 +50,8 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 ### Coming
 
 - RNG for country owner
+- Country colors
+- Troops by round
 - Map class instead of countries list
 - Goals
 - Game class
