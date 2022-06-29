@@ -9,6 +9,9 @@ class Country {
     setOwner(player) {
         this.owner = player;
     }
+    setColor(color) {
+        this.color = color;
+    }
     borders() {
         return this.borders;
     }
@@ -38,6 +41,7 @@ class Country {
                             this.borders[key].setTrops(1);
                             this.removeTrops(1);
                             this.borders[key].setOwner(this.owner);
+                            this.borders[key].setColor(this.color);
                         }    
                     }
                 }
@@ -151,6 +155,7 @@ class Menu {
                 pkey += 1;
             }
             randomCountries[key].setOwner(this.players[pkey]);
+            randomCountries[key].setColor(this.players[pkey].color);
         });
     }
     status(id) {
