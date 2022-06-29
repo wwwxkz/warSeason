@@ -81,7 +81,7 @@ class Player {
     }
 }
 
-class Rounds {
+class Round {
     constructor() {
         this.round = 0;
     }
@@ -174,24 +174,43 @@ class Menu {
 
 class Game {
     constructor() {
+        const argentina = new Country('Argentina');
+        const peru = new Country('Peru');
+        const brasil = new Country('Brasil');
+        const colombia = new Country('Colombia');
+        argentina.setBorders([brasil, peru]);
+        peru.setBorders([argentina, brasil, colombia]);
+        brasil.setBorders([argentina, peru, colombia]);
+        colombia.setBorders([peru, brasil]);
+        const p1 = new Player('wwwxkz');
+        const p2 = new Player('klaus');
+        const players = [p1, p2];
+        this.players = players;
+        const countries = [argentina, brasil, peru, colombia];
+        this.countries = countries;
+
+        this.menu = new Menu(countries, players);
+
+        this.round = new Round();
+
+        this.turn();
+    }
+    turn() {
+        this.players.forEach(player => {
+            let countryInput = prompt("Add N trops in which Country?");
+            this.countries.forEach(country => {
+                if (country.name == countryInput) {
+                    if (country.owner == player) {
+                        console.log('E');
+                    }
+                }
+            });
+            alert(`Adding N troops to ${countryInput}`);
+            let who = prompt("Who you want to atack?");
+            alert(`Atacking ${who}`);
+        });
+        this.round.nextRound();
     }
 }
-new Game();
 
-// Set countries
-const argentina = new Country('Argentina');
-const peru = new Country('Peru');
-const brasil = new Country('Brasil');
-const colombia = new Country('Colombia');
-argentina.setBorders([brasil, peru]);
-peru.setBorders([argentina, brasil, colombia]);
-brasil.setBorders([argentina, peru, colombia]);
-colombia.setBorders([peru, brasil]);
-// Set players 
-const p1 = new Player('wwwxkz');
-const p2 = new Player('klaus');
-// Players / Countries
-const players = [p1, p2];
-const countries = [argentina, brasil, peru, colombia];
-// Start Game
-const menu = new Menu(countries, players);
+const game = new Game()
