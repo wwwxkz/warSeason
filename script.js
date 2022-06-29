@@ -7,7 +7,6 @@ class Country {
         this.borders = borders
     }
     setOwner(player) {
-        // Set country owner
         this.owner = player;
     }
     borders() {
@@ -41,13 +40,11 @@ class Country {
                             this.borders[key].setOwner(this.owner);
                         }    
                     }
-                } else {
-                    //console.log('Not found');
                 }
             });    
         } 
         else {
-            // Display message, can not atack with just one troop
+            console.log('You can not atack with just one troop')
         } 
     }
     rng() {
@@ -92,7 +89,6 @@ class Rounds {
         this.wonScreen();
     }
     wonScreen() {
-        // Button for Restart Game
         this.restartGame();
         return;
     }

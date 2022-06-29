@@ -42,8 +42,13 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - Backend 
   - Javascript
 - Server / Client
-<<<<<<< HEAD
   - Gathering options
-=======
-  - Gathering options
->>>>>>> 49fced66f688c416ce23e60351b4ddd0ee073480
+
+### Coming
+
+- RNG for country owner
+- Map class instead of countries list
+- Goals
+- Game class
+- Server / Client
+- Frontend
