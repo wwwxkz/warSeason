@@ -63,16 +63,8 @@ class Player {
     }
     randomGoal() {
         let goals = [
-            'Goal 1',
-            'Goal 2',
-            'Goal 3',
-            'Goal 4',
-            'Goal 5',
-            'Goal 6',
-            'Goal 7',
-            'Goal 8',
-            'Goal 9',
-            'Goal 10',
+            'Conquer 2 countries',
+            'Defeat enemy with color N',
         ]
         return goals[Math.floor(Math.random() * 10)];
     }
@@ -116,7 +108,10 @@ class Menu {
     }
     getCountries() {
         Object.keys(this.countries).forEach(key => {
-            console.log(key, '- Use country ->', this.countries[key]);
+            //console.log(key, '- Use country ->', this.countries[key]);
+            console.log(key, '- Use country ->', this.countries[key].name);
+            console.log(key, '- Use country ->', this.countries[key].owner);
+            console.log(key, '- Use country ->', this.countries[key].troops);
         });
     }
     setPlayersColor() {
@@ -161,15 +156,6 @@ class Menu {
     status(id) {
         console.log(this.countries[id].status());
     }
-    addTrops(id, add) {
-        this.countries[id].addTrops(add);
-    }
-    removeTrops(id, remove) {
-        this.countries[id].addTrops(remove);
-    }
-    atack(id, who) {
-        this.countries[id].atack(who);
-    }
 }
 
 class Game {
@@ -197,17 +183,25 @@ class Game {
     }
     turn() {
         this.players.forEach(player => {
-            let countryInput = prompt("Add N trops in which Country?");
+            let countryInput = prompt(player.name + " - Add N trops to which Country?");
             this.countries.forEach(country => {
                 if (country.name == countryInput) {
                     if (country.owner == player) {
-                        console.log('E');
+                        let amount = prompt(player.name + " - How many?");
+                        country.addTrops(parseInt(amount));
                     }
                 }
             });
-            alert(`Adding N troops to ${countryInput}`);
-            let who = prompt("Who you want to atack?");
-            alert(`Atacking ${who}`);
+            countryInput = prompt(player.name + " - With which country you want to atack?");
+            let who = prompt(player.name + " - Which you want to atack?");
+            this.countries.forEach(country => {
+                if (country.name == countryInput) {
+                    if (country.owner == player) {
+                        country.atack(who);
+                    }
+                }
+            });
+            this.menu.getCountries()
         });
         this.round.nextRound();
     }
