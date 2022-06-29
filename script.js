@@ -67,7 +67,7 @@ class Player {
             'Conquer 24 countries',
             'Conquer the world',
         ]
-        return goals[Math.floor(Math.random() * 1)];
+        return goals[Math.floor(Math.random() * 3)];
     }
     setColor(color) {
         this.color = color;
@@ -87,35 +87,41 @@ class Round {
         // Conquer 24 countries
         let countriesNumber = 0;
         // Conquer the world
-        let won = 0;
+        let world = 0;
         players.forEach(player => {
             if (player.goal == 'Conquer 3 countries') {
                 countries.forEach(country => {
                     if (country.owner == player) {
                         countriesNumber += 1;
                     }
+                    else {
+                        world = 1;
+                    }
                 });
-                if (countriesNumber == 3) {
+                if (countriesNumber == 3 || world == 0) {
                     this.wonScreen(player);
-                } 
+                }
             }
             if (player.goal == 'Conquer 24 countries') {
                 countries.forEach(country => {
                     if (country.owner == player) {
                         countries += 1;
                     }
+                    else {
+                        world = 1;
+                    }
                 });
-                if (countries == 24) {
+                if (countries == 24 || world == 0) {
                     this.wonScreen(player);
                 } 
             }
             if (player.goal == 'Conquer the world') {
                 countries.forEach(country => {
                     if (country.owner != player) {
-                        won = 1;
+                        world = 1;
                     }
                 });
-                if (won == 0) {
+                if (world == 0) {
                     this.wonScreen(player);
                 } 
             }
