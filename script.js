@@ -66,7 +66,6 @@ class Player {
             'Conquer 3 countries',
             'Conquer 24 countries',
             'Conquer the world',
-            'Conquer the world',
         ]
         return goals[Math.floor(Math.random() * 1)];
     }
@@ -134,8 +133,7 @@ class Round {
     }
 }
 
-class Menu {
-    // Get map instead of countries
+class Map {
     constructor(countries, players) {
         this.countries = countries;
         this.players = players;
@@ -170,7 +168,6 @@ class Menu {
             this.players[key].setColor(randomColors[key]);
         })
     }
-    // Map func
     setCountriesOwner() {
         let quotient = Math.floor(this.countries.length / this.players.length);
         let remainder = this.countries.length % this.players.length;
@@ -195,27 +192,50 @@ class Menu {
     }
 }
 
+// South America
+const argentina = new Country('Argentina');
+const peru = new Country('Peru');
+const brazil = new Country('Brazil'); // Algeria
+const colombia = new Country('Colombia');
+argentina.setBorders([brazil, peru]);
+peru.setBorders([argentina, brazil, colombia]);
+brazil.setBorders([argentina, peru, colombia]);
+colombia.setBorders([peru, brazil]);
+const southAmerica = [argentina, brazil, peru, colombia];
+
+// North America
+const mexico = new Country('Mexico');
+const california = new Country('California');
+const newYork = new Country('New York');
+const labrador = new Country('Labrador');
+const ottawa = new Country('Ottawa');
+const vancouver = new Country('Vancouver');
+const mackenzie = new Country('Mackenzie');
+const alaska = new Country('Alaska');
+const greenland = new Country('Greenland');
+mexico.setBorders([california, newYork]); // Colombia
+california.setBorders([newYork, ottawa, vancouver, mexico]);
+newYork.setBorders([ottawa, california, mexico, labrador]);
+labrador.setBorders([ottawa, newYork, greenland]);
+ottawa.setBorders([newYork, california, labrador, vancouver, mackenzie]);
+vancouver.setBorders([ottawa, california, mackenzie, alaska]);
+mackenzie.setBorders([alaska, vancouver]);
+alaska.setBorders([mackenzie, vancouver]); // Vladivostok
+greenland.setBorders([mackenzie, labrador]); // Iceland
+const northAmerica = [mexico, california, newYork, labrador, ottawa, vancouver, mackenzie, alaska, greenland];
+
 class Game {
     constructor() {
-        const argentina = new Country('Argentina');
-        const peru = new Country('Peru');
-        const brasil = new Country('Brasil');
-        const colombia = new Country('Colombia');
-        argentina.setBorders([brasil, peru]);
-        peru.setBorders([argentina, brasil, colombia]);
-        brasil.setBorders([argentina, peru, colombia]);
-        colombia.setBorders([peru, brasil]);
+        // Comming -> add plays by IP
         const p1 = new Player('wwwxkz');
         const p2 = new Player('klaus');
         const players = [p1, p2];
         this.players = players;
-        const countries = [argentina, brasil, peru, colombia];
-        this.countries = countries;
-
-        this.menu = new Menu(countries, players);
-
+        // Use southAmerica map
+        this.countries = southAmerica
+        this.map = new Map(southAmerica, players);
+        // Start game
         this.round = new Round();
-
         this.turn();
     }
     turn() {
@@ -239,7 +259,7 @@ class Game {
                         }
                     }
                 });
-                this.menu.getCountries()
+                this.map.getCountries();
             });
             this.round.nextRound(this.players, this.countries);
         }
