@@ -1,4 +1,4 @@
-# mextWar
+# warSeason
 
 ### What
 
@@ -33,6 +33,7 @@ As a group of friends was playing War in its online version, we came across many
 - Connections problems <br>
   Whenever someone lost connection and the round passes, the troops got from the round are never placed in a country and it gets lost in the next round. Saving it for the next round does not alter the gameplay and makes the reconnection process less painful
 
+Previously named as mextWar <br>
 MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone together
 <br>
 -> It is interesting, check it out <a href="https://en.wikipedia.org/wiki/Monbukagakusho_Scholarship">here</a>
@@ -51,5 +52,4 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 
 - Troops by round
 - Atack as long as you can
-- Frontend
 - Server / Client
