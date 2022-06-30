@@ -43,17 +43,17 @@ class Country {
                             this.removeTrops(1);
                             this.borders[key].setOwner(this.owner);
                             this.borders[key].setColor(this.color);
-                        }    
+                        }
                     }
                 }
-            });    
-        } 
+            });
+        }
         else {
             console.log('You can not atack with just one troop')
-        } 
+        }
     }
     rng() {
-        return Math.floor(Math.random() * 4); 
+        return Math.floor(Math.random() * 4);
     }
 }
 
@@ -114,7 +114,7 @@ class Round {
                 });
                 if (countries == 24 || world == 0) {
                     this.wonScreen(player);
-                } 
+                }
             }
             if (player.goal == 'Conquer the world') {
                 countries.forEach(country => {
@@ -124,7 +124,7 @@ class Round {
                 });
                 if (world == 0) {
                     this.wonScreen(player);
-                } 
+                }
             }
         });
     }
@@ -157,18 +157,7 @@ class Map {
         });
     }
     setPlayersColor() {
-        let colors = [
-            '#FFFACD',
-            '#B22222',
-            '#FF7F50',
-            '#F0F8FF',
-            '#000000',
-            '#0000FF',
-            '#808080',
-            '#FF69B4',
-            '#800080',
-            '#FF0000',
-        ]
+        let colors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const randomly = () => Math.random() - 0.5;
         let randomColors = [].concat(colors).sort(randomly);
         Object.keys(this.players).forEach(key => {
@@ -202,7 +191,7 @@ class Map {
 // South America
 const py = new Country('Paraguay', 'PY');
 const co = new Country('Colombia', 'CO');
-const ve = new Country('Venezuela', 'VE'); // Algeria
+const ve = new Country('Venezuela', 'VE');
 const cl = new Country('Chile', 'CL');
 const sr = new Country('Suriname', 'SR');
 const bo = new Country('Bolivia', 'BO');
@@ -265,36 +254,59 @@ class Game {
     }
     turn(countries) {
         $(function () {
-            var owner = {
-                "AR": 1,
-                "CL": 1,
-                "UY": 1,
-                "BR": 1,
-            };
+            function owner() {
+                let json = {}
+                countries.forEach(country => {
+                    json[country.code] = country.color;
+                });
+                return json;
+            }
+            owner = owner();
             $('#map').vectorMap({
                 map: 'south_america_mill',
                 series: {
                     regions: [{
-                        values: owner,
-                        scale: [
-                            '#E6EA72', 
-                            '#0071A4',
-                            '#197796',
-                            '#6bc1c4',
-                            '#cdd100',
-                            '#db5360',
-                            '#bf3fff',
-                            '#efae6e',
-                            '#24b59c',
-                            '#e567ce',
-                        ],
+                        scale: {
+                            '1': '#E6EA72',
+                            '2': '#0071A4',
+                            '3': '#197796',
+                            '4': '#6bc1c4',
+                            '5': '#cdd100',
+                            '6': '#db5360',
+                            '7': '#bf3fff',
+                            '8': '#efae6e',
+                            '9': '#24b59c',
+                            '10': '#e567ce',
+                        },
                         attribute: 'fill',
+                        values: owner,
                     }]
                 },
-                onRegionTipShow: function(e, el, code){
+                regionLabelStyle: {
+                    initial: {
+                        fill: '#B90E32'
+                    },
+                    hover: {
+                        fill: 'black'
+                    }
+                },
+                labels: {
+                    regions: {
+                        render: function (code) {
+                            let status;
+                            countries.forEach(country => {
+                                if (country.code == code) {
+                                    status = country.status();
+                                }
+                            });
+                            return status;
+                        }
+                    }
+                },
+                onRegionTipShow: function (e, el, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
-                            el.html(el.html()+' (Owner - '+ country.owner.name +')');
+                            el.html(el.html() + ' (' + country.owner.name + ' - ' + country.status() + ')');
                         }
                     });
                 },
@@ -310,7 +322,7 @@ class Game {
                     alert(code);
                 }
             });
-        });    
+        });
         //this.round.nextRound(this.players, this.countries);
     }
 }

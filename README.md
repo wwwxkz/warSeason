@@ -55,3 +55,7 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - Troops by round
 - Atack as long as you can
 - Server / Client
+
+# Know issues
+
+- Use player color instead of both player and country
