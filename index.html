@@ -14,46 +14,6 @@
 
 <body>
   <div id="map" style="width: 600px; height: 400px"></div>
-  <script>
-    $(function () {
-      var owner = {
-        "AR": 1,
-        "CL": 3,
-        "UY": 6,
-        "BR": 10,
-      };
-      $('#map').vectorMap({
-        map: 'south_america_mill',
-        series: {
-          regions: [{
-            values: owner,
-            scale: [
-              '#E6EA72', 
-              '#0071A4',
-              '#197796',
-              '#6bc1c4',
-              '#cdd100',
-              '#db5360',
-              '#bf3fff',
-              '#efae6e',
-              '#24b59c',
-              '#e567ce',
-            ],
-            attribute: 'fill',
-            //normalizeFunction: 'polynomial'
-          }]
-        },
-        onRegionTipShow: function(e, el, code){
-          el.html(el.html()+' (Owner - '+owner[code]+')');
-        },
-        onRegionClick: function (event, code) {
-          alert(code);
-        }
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
-<!--
-<script src="script.js"></script>
--->
 </html>

@@ -1,6 +1,7 @@
 class Country {
-    constructor(name) {
+    constructor(name, code) {
         this.name = name;
+        this.code = code;
         this.troops = 1;
     }
     setBorders(borders) {
@@ -199,19 +200,19 @@ class Map {
 }
 
 // South America
-const py = new Country('Paraguay');
-const co = new Country('Colombia');
-const ve = new Country('Venezuela'); // Algeria
-const cl = new Country('Chile');
-const sr = new Country('Suriname');
-const bo = new Country('Bolivia');
-const ec = new Country('Ecuador');
-const ar = new Country('Argentina');
-const gy = new Country('Guyana');
-const br = new Country('Brazil');
-const pe = new Country('Peru');
-const uy = new Country('Uruguay');
-const fk = new Country('Falkland Is.');
+const py = new Country('Paraguay', 'PY');
+const co = new Country('Colombia', 'CO');
+const ve = new Country('Venezuela', 'VE'); // Algeria
+const cl = new Country('Chile', 'CL');
+const sr = new Country('Suriname', 'SR');
+const bo = new Country('Bolivia', 'BO');
+const ec = new Country('Ecuador', 'EC');
+const ar = new Country('Argentina', 'AR');
+const gy = new Country('Guyana', 'GY');
+const br = new Country('Brazil', 'BR');
+const pe = new Country('Peru', 'PE');
+const uy = new Country('Uruguay', 'UY');
+const fk = new Country('Falkland Is.', 'FK');
 py.setBorders([ar, bo, br]);
 co.setBorders([ec, pe, br, ve]);
 ve.setBorders([co, br, gy]);
@@ -228,25 +229,25 @@ fk.setBorders([ar]);
 const southAmerica = [py, co, ve, cl, sr, bo, ec, ar, gy, br, pe, uy, fk];
 
 // North America
-const mexico = new Country('Mexico');
-const california = new Country('California');
-const newYork = new Country('New York');
-const labrador = new Country('Labrador');
-const ottawa = new Country('Ottawa');
-const vancouver = new Country('Vancouver');
-const mackenzie = new Country('Mackenzie');
-const alaska = new Country('Alaska');
-const greenland = new Country('Greenland');
-mexico.setBorders([california, newYork]); // Colombia
-california.setBorders([newYork, ottawa, vancouver, mexico]);
-newYork.setBorders([ottawa, california, mexico, labrador]);
-labrador.setBorders([ottawa, newYork, greenland]);
-ottawa.setBorders([newYork, california, labrador, vancouver, mackenzie]);
-vancouver.setBorders([ottawa, california, mackenzie, alaska]);
-mackenzie.setBorders([alaska, vancouver]);
-alaska.setBorders([mackenzie, vancouver]); // Vladivostok
-greenland.setBorders([mackenzie, labrador]); // Iceland
-const northAmerica = [mexico, california, newYork, labrador, ottawa, vancouver, mackenzie, alaska, greenland];
+// const mexico = new Country('Mexico');
+// const california = new Country('California');
+// const newYork = new Country('New York');
+// const labrador = new Country('Labrador');
+// const ottawa = new Country('Ottawa');
+// const vancouver = new Country('Vancouver');
+// const mackenzie = new Country('Mackenzie');
+// const alaska = new Country('Alaska');
+// const greenland = new Country('Greenland');
+// mexico.setBorders([california, newYork]); // Colombia
+// california.setBorders([newYork, ottawa, vancouver, mexico]);
+// newYork.setBorders([ottawa, california, mexico, labrador]);
+// labrador.setBorders([ottawa, newYork, greenland]);
+// ottawa.setBorders([newYork, california, labrador, vancouver, mackenzie]);
+// vancouver.setBorders([ottawa, california, mackenzie, alaska]);
+// mackenzie.setBorders([alaska, vancouver]);
+// alaska.setBorders([mackenzie, vancouver]); // Vladivostok
+// greenland.setBorders([mackenzie, labrador]); // Iceland
+// const northAmerica = [mexico, california, newYork, labrador, ottawa, vancouver, mackenzie, alaska, greenland];
 
 class Game {
     constructor() {
@@ -256,37 +257,61 @@ class Game {
         const players = [p1, p2];
         this.players = players;
         // Use southAmerica map
-        this.countries = southAmerica
+        this.countries = southAmerica;
         this.map = new Map(southAmerica, players);
         // Start game
         this.round = new Round();
-        this.turn();
+        this.turn(this.countries);
     }
-    turn() {
-        while (true) {
-            this.players.forEach(player => {
-                let countryInput = prompt(player.name + " - Add N trops to which Country?");
-                this.countries.forEach(country => {
-                    if (country.name == countryInput) {
-                        if (country.owner == player) {
-                            let amount = prompt(player.name + " - How many?");
-                            country.addTrops(parseInt(amount));
+    turn(countries) {
+        $(function () {
+            var owner = {
+                "AR": 1,
+                "CL": 1,
+                "UY": 1,
+                "BR": 1,
+            };
+            $('#map').vectorMap({
+                map: 'south_america_mill',
+                series: {
+                    regions: [{
+                        values: owner,
+                        scale: [
+                            '#E6EA72', 
+                            '#0071A4',
+                            '#197796',
+                            '#6bc1c4',
+                            '#cdd100',
+                            '#db5360',
+                            '#bf3fff',
+                            '#efae6e',
+                            '#24b59c',
+                            '#e567ce',
+                        ],
+                        attribute: 'fill',
+                    }]
+                },
+                onRegionTipShow: function(e, el, code){
+                    countries.forEach(country => {
+                        if (country.code == code) {
+                            el.html(el.html()+' (Owner - '+ country.owner.name +')');
                         }
-                    }
-                });
-                countryInput = prompt(player.name + " - With which country you want to atack?");
-                let who = prompt(player.name + " - Which you want to atack?");
-                this.countries.forEach(country => {
-                    if (country.name == countryInput) {
-                        if (country.owner == player) {
-                            country.atack(who);
+                    });
+                },
+                onRegionClick: function (event, code) {
+                    countries.forEach(country => {
+                        if (country.code == code) {
+                            console.log('Country: ', country.name);
+                            console.log('Code: ', country.code);
+                            console.log('Troops: ', country.status());
+                            console.log(country.name, '- Can atack countries in black');
                         }
-                    }
-                });
-                this.map.getCountries();
+                    });
+                    alert(code);
+                }
             });
-            this.round.nextRound(this.players, this.countries);
-        }
+        });    
+        //this.round.nextRound(this.players, this.countries);
     }
 }
 
