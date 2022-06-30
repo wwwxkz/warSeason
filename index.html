@@ -8,35 +8,39 @@
   <link rel="stylesheet" href="assets/jvectormap/jquery-jvectormap-2.0.5.css" type="text/css" media="screen" />
   <script src="assets/jvectormap/jquery.js"></script>
   <script src="assets/jvectormap/jquery-jvectormap-2.0.5.min.js"></script>
-  <!--
-  <script src="assets/jvectormap/maps/world.js"></script>
-  -->
   <script src="assets/jvectormap/maps/south-america.js"></script>
   <title>warSeason</title>
 </head>
 
 <body>
-  <!--
-  <div id="world" style="width: 600px; height: 400px"></div>
-  -->
-  <div id="south-america" style="width: 600px; height: 400px"></div>
+  <div id="map" style="width: 600px; height: 400px"></div>
   <script>
     $(function () {
       var owner = {
-        "AR": 10.63,
-        "CL": 9.58,
-        "UY": 7.63,
-        "BR": 5.58,
+        "AR": 1,
+        "CL": 3,
+        "UY": 6,
+        "BR": 10,
       };
-      //$('#world').vectorMap({
-      $('#south-america').vectorMap({
-        //map: 'world',
+      $('#map').vectorMap({
         map: 'south_america_mill',
         series: {
           regions: [{
             values: owner,
-            scale: ['#C8EEFF', '#0071A4'],
-            normalizeFunction: 'polynomial'
+            scale: [
+              '#E6EA72', 
+              '#0071A4',
+              '#197796',
+              '#6bc1c4',
+              '#cdd100',
+              '#db5360',
+              '#bf3fff',
+              '#efae6e',
+              '#24b59c',
+              '#e567ce',
+            ],
+            attribute: 'fill',
+            //normalizeFunction: 'polynomial'
           }]
         },
         onRegionTipShow: function(e, el, code){
