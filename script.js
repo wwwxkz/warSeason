@@ -262,8 +262,9 @@ class Game {
                 return json;
             }
             owner = owner();
-            $('#map').vectorMap({
+            var map = new jvm.Map({
                 map: 'south_america_mill',
+                container: $('#map'),
                 series: {
                     regions: [{
                         scale: {
@@ -317,6 +318,14 @@ class Game {
                             console.log('Code: ', country.code);
                             console.log('Troops: ', country.status());
                             console.log(country.name, '- Can atack countries in black');
+                            //console.log('Borders: ', country.borders);
+                            country.borders.forEach(country => {
+                                console.log('Borders: ', country.name);
+                                // map.series.regions[0].setValues({'color' : '#e5e5e5'});
+                                // Make country black
+                                // Restrict next click to those countries
+                                // Go back to normal view by clicking to your country
+                            });
                         }
                     });
                     alert(code);
