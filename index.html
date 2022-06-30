@@ -8,16 +8,40 @@
   <link rel="stylesheet" href="assets/jvectormap/jquery-jvectormap-2.0.5.css" type="text/css" media="screen" />
   <script src="assets/jvectormap/jquery.js"></script>
   <script src="assets/jvectormap/jquery-jvectormap-2.0.5.min.js"></script>
+  <!--
   <script src="assets/jvectormap/maps/world.js"></script>
+  -->
+  <script src="assets/jvectormap/maps/south-america.js"></script>
   <title>warSeason</title>
 </head>
 
 <body>
+  <!--
   <div id="world" style="width: 600px; height: 400px"></div>
+  -->
+  <div id="south-america" style="width: 600px; height: 400px"></div>
   <script>
     $(function () {
-      $('#world').vectorMap({
-        map: 'world',
+      var owner = {
+        "AR": 10.63,
+        "CL": 9.58,
+        "UY": 7.63,
+        "BR": 5.58,
+      };
+      //$('#world').vectorMap({
+      $('#south-america').vectorMap({
+        //map: 'world',
+        map: 'south_america_mill',
+        series: {
+          regions: [{
+            values: owner,
+            scale: ['#C8EEFF', '#0071A4'],
+            normalizeFunction: 'polynomial'
+          }]
+        },
+        onRegionTipShow: function(e, el, code){
+          el.html(el.html()+' (Owner - '+owner[code]+')');
+        },
         onRegionClick: function (event, code) {
           alert(code);
         }

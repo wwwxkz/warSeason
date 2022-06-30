@@ -199,15 +199,33 @@ class Map {
 }
 
 // South America
-const argentina = new Country('Argentina');
-const peru = new Country('Peru');
-const brazil = new Country('Brazil'); // Algeria
-const colombia = new Country('Colombia');
-argentina.setBorders([brazil, peru]);
-peru.setBorders([argentina, brazil, colombia]);
-brazil.setBorders([argentina, peru, colombia]);
-colombia.setBorders([peru, brazil]);
-const southAmerica = [argentina, brazil, peru, colombia];
+const py = new Country('Paraguay');
+const co = new Country('Colombia');
+const ve = new Country('Venezuela'); // Algeria
+const cl = new Country('Chile');
+const sr = new Country('Suriname');
+const bo = new Country('Bolivia');
+const ec = new Country('Ecuador');
+const ar = new Country('Argentina');
+const gy = new Country('Guyana');
+const br = new Country('Brazil');
+const pe = new Country('Peru');
+const uy = new Country('Uruguay');
+const fk = new Country('Falkland Is.');
+py.setBorders([ar, bo, br]);
+co.setBorders([ec, pe, br, ve]);
+ve.setBorders([co, br, gy]);
+cl.setBorders([ar, bo, pe]);
+sr.setBorders([gy, bo, br]);
+bo.setBorders([ar, pe, br, cl, py]);
+ec.setBorders([pe, co]);
+ar.setBorders([uy, py, br, cl, bo]);
+gy.setBorders([br, sr, ve]);
+br.setBorders([uy, ar, py, bo, pe, co, ve, gy, sr]);
+pe.setBorders([cl, bo, br, ec, co]);
+uy.setBorders([br, ar]);
+fk.setBorders([ar]);
+const southAmerica = [py, co, ve, cl, sr, bo, ec, ar, gy, br, pe, uy, fk];
 
 // North America
 const mexico = new Country('Mexico');

@@ -43,6 +43,8 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - Frontend
   - CSS
   - Javascript
+  - <a href="https://jvectormap.com/">jVectorMap</a>
+    
 - Backend 
   - Javascript
 - Server / Client
