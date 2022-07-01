@@ -389,6 +389,24 @@ class Game {
                 }
             });
         });
+        $("#map").append(`
+        <div id="map-menu">
+            <div id="map-menu-add">Add</div>
+            <div id="map-menu-atack">Atack</div>
+            <div id="map-menu-reassign">Reassign</div>
+        </div>
+        `);
+
+        $("#map-menu-add").click(function () {
+            console.log('Add');
+        })
+        $("#map-menu-atack").click(function () {
+            console.log('Atack');
+        })
+        $("#map-menu-reassign").click(function () {
+            console.log('Reassign');
+        })
+
         //this.round.nextRound(this.players, this.countries);
     }
 }
