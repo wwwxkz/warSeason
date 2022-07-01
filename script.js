@@ -194,24 +194,11 @@ const ab = new Country('Alberta', 'AB');
 const ak = new Country('Alaska', 'AK');
 const nwt = new Country('North West Territory', 'NWT');
 const gl = new Country('Greenland', 'GL');
-ca.setBorders([wus, eus]);
-wus.setBorders([ab, eus, ca, on]);
-eus.setBorders([wus, on, ca, qc]);
-qc.setBorders([eus, on]);
-on.setBorders([eus, qc, wus, ab, nwt]);
-ab.setBorders([on, wus, nwt, ak]);
-ak.setBorders([ab, nwt]); // More
-nwt.setBorders([ak, ab, on]);
-gl.setBorders([qc, on, nwt]); // More
 //  - South America
 const co = new Country('Colombia', 'CO');
 const ar = new Country('Argentina', 'AR');
 const br = new Country('Brazil', 'BR');
 const pe = new Country('Peru', 'PE');
-co.setBorders([br, pe]);
-ar.setBorders([br, pe]);
-br.setBorders([ar, co, pe]); // More
-pe.setBorders([br, ar, co]);
 //  - Europe
 const uk = new Country('Ukraine', 'UK');
 const sc = new Country('Scandinavia', 'SC');
@@ -220,13 +207,6 @@ const se = new Country('Southern Europe', 'SE');
 const we = new Country('Western Europe', 'WE');
 const gb = new Country('Great Britain', 'GB');
 const il = new Country('Iceland', 'IL');
-uk.setBorders([ne, sc, se]); // More
-sc.setBorders([uk, il, ne, gb]);
-ne.setBorders([se, we, gb, sc, uk]);
-se.setBorders([we, ne, uk]); // More
-we.setBorders([se, ne, gb]);
-gb.setBorders([il, we, sc, ne]);
-il.setBorders([gb, sc]);
 //  - Africa
 const na = new Country('North Africa', 'NA');
 const eg = new Country('Egypt', 'EG');
@@ -234,12 +214,6 @@ const cg = new Country('Congo', 'CG');
 const ea = new Country('East Africa', 'EA');
 const sa = new Country('South Africa', 'SA');
 const mg = new Country('Madagascar', 'MG');
-na.setBorders([eg, cg, ea]); // More
-eg.setBorders([na, ea]); // More
-cg.setBorders([na, ea, sa]);
-ea.setBorders([cg, sa, na, eg]);
-sa.setBorders([cg, ea]);
-mg.setBorders([sa, ea]);
 //  - Asia
 const sb = new Country('Siberia', 'SB');
 const ur = new Country('Ural', 'UR');
@@ -253,27 +227,58 @@ const cn = new Country('China', 'CN');
 const id = new Country('India', 'ID');
 const me = new Country('Middle East', 'ME');
 const sm = new Country('Siam', 'SM');
-// Fix
-sb.setBorders([br, pe]);
-ur.setBorders([br, pe]);
-af.setBorders([ar, co, pe]);
-yk.setBorders([br, ar, co]);
-kc.setBorders([br, pe]);
-ir.setBorders([ar, co, pe]);
-mo.setBorders([ar, co, pe]);
-jp.setBorders([br, ar, co]);
-cn.setBorders([br, pe]);
-id.setBorders([ar, co, pe]);
-me.setBorders([br, pe]);
-sm.setBorders([ar, co, pe]);
 //  - Australis
 const wa = new Country('Western Australia', 'WA');
 const eas = new Country('Eastern Australia', 'EAS');
 const is = new Country('Indonesia', 'IS');
 const ng = new Country('New Guinea', 'NG');
+//  - North America
+ca.setBorders([wus, eus]);
+wus.setBorders([ab, eus, ca, on]);
+eus.setBorders([wus, on, ca, qc]);
+qc.setBorders([eus, on]);
+on.setBorders([eus, qc, wus, ab, nwt]);
+ab.setBorders([on, wus, nwt, ak]);
+ak.setBorders([ab, nwt, kc]);
+nwt.setBorders([ak, ab, on]);
+gl.setBorders([qc, on, nwt, il]);
+//  - South America
+co.setBorders([br, pe]);
+ar.setBorders([br, pe]);
+br.setBorders([ar, co, pe, na]);
+pe.setBorders([br, ar, co]);
+//  - Europe
+uk.setBorders([ne, sc, se, me, af , ur]);
+sc.setBorders([uk, il, ne, gb]);
+ne.setBorders([se, we, gb, sc, uk]);
+se.setBorders([we, ne, uk, me, eg, na]);
+we.setBorders([se, ne, gb]);
+gb.setBorders([il, we, sc, ne]);
+il.setBorders([gb, sc, gl]);
+//  - Africa
+na.setBorders([eg, cg, ea, se, br]);
+eg.setBorders([na, ea, me, se]);
+cg.setBorders([na, ea, sa]);
+ea.setBorders([cg, sa, na, eg]);
+sa.setBorders([cg, ea]);
+mg.setBorders([sa, ea]);
+//  - Asia
+sb.setBorders([ur, cn, mo, ir, yk]);
+ur.setBorders([sb, cn, af, uk]);
+af.setBorders([id, me, ur, cn, uk]);
+yk.setBorders([kc, ir, sb]); 
+kc.setBorders([yk, ir, mo, jp, ak]);
+ir.setBorders([mo, kc, yk, sb]);
+mo.setBorders([kc, ir, cn, sb]);
+jp.setBorders([mo, kc]);
+cn.setBorders([mo, sb, ur, af, id, sm]);
+id.setBorders([cn, sm, af, me]);
+me.setBorders([af, id, eg, se, uk]);
+sm.setBorders([cn, id, is]);
+//  - Australis
 wa.setBorders([eas, is, ng]);
 eas.setBorders([ng, wa]);
-is.setBorders([wa, ng]); // More
+is.setBorders([wa, ng, sm]);
 ng.setBorders([is, eas, wa]);
 //
 const world = [
@@ -290,7 +295,6 @@ const world = [
     // Australis
     wa, eas, is, ng
 ];
-
 
 class Game {
     constructor() {
