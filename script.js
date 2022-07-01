@@ -194,16 +194,15 @@ const ab = new Country('Alberta', 'AB');
 const ak = new Country('Alaska', 'AK');
 const nwt = new Country('North West Territory', 'NWT');
 const gl = new Country('Greenland', 'GL');
-// Fix
 ca.setBorders([wus, eus]);
-wus.setBorders([wus, eus]);
-eus.setBorders([wus, eus]);
-qc.setBorders([wus, eus]);
-on.setBorders([wus, eus]);
-ab.setBorders([wus, eus]);
-ak.setBorders([wus, eus]);
-nwt.setBorders([wus, eus]);
-gl.setBorders([wus, eus]);
+wus.setBorders([ab, eus, ca, on]);
+eus.setBorders([wus, on, ca, qc]);
+qc.setBorders([eus, on]);
+on.setBorders([eus, qc, wus, ab, nwt]);
+ab.setBorders([on, wus, nwt, ak]);
+ak.setBorders([ab, nwt]);
+nwt.setBorders([ak, ab, on]);
+gl.setBorders([qc, on, nwt]);
 //  - South America
 const co = new Country('Colombia', 'CO');
 const ar = new Country('Argentina', 'AR');

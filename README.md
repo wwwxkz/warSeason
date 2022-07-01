@@ -84,6 +84,7 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 
 - [X] RNG for country owner
 - [X] Goals
+- [X] Random color for players
 - [X] Country colors
 - [X] Goals logic
 - [X] Game class
