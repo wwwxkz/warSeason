@@ -1,4 +1,4 @@
-#map-menu, #map-players {
+#map-menu, #map-players, #map-menu-popup {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -29,9 +29,17 @@
   top: 50%;
 }
 
-#map-players > div {
+#map-players > div, #map-menu-popup > div {
   padding-top: 10px;
 }
-#map-players > div:last-child {
+#map-players > div:last-child, #map-menu-popup > div:last-child {
   padding-bottom: 10px;
+}
+
+#map-menu-popup {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }

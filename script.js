@@ -248,7 +248,7 @@ ar.setBorders([br, pe]);
 br.setBorders([ar, co, pe, na]);
 pe.setBorders([br, ar, co]);
 //  - Europe
-uk.setBorders([ne, sc, se, me, af , ur]);
+uk.setBorders([ne, sc, se, me, af, ur]);
 sc.setBorders([uk, il, ne, gb]);
 ne.setBorders([se, we, gb, sc, uk]);
 se.setBorders([we, ne, uk, me, eg, na]);
@@ -266,7 +266,7 @@ mg.setBorders([sa, ea]);
 sb.setBorders([ur, cn, mo, ir, yk]);
 ur.setBorders([sb, cn, af, uk]);
 af.setBorders([id, me, ur, cn, uk]);
-yk.setBorders([kc, ir, sb]); 
+yk.setBorders([kc, ir, sb]);
 kc.setBorders([yk, ir, mo, jp, ak]);
 ir.setBorders([mo, kc, yk, sb]);
 mo.setBorders([kc, ir, cn, sb]);
@@ -308,6 +308,7 @@ class Game {
         this.turn(this.countries);
     }
     turn(countries) {
+        var atack = 0;
         $(function () {
             function owner() {
                 let json = {}
@@ -370,19 +371,32 @@ class Game {
                 onRegionClick: function (event, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
-                            if (clicked == 1) {
-                                map.clearSelectedRegions()
-                                clicked = 0;
+                            if (atack == 1) {
+                                if (clicked == 1) {
+                                    map.clearSelectedRegions()
+                                    clicked = 0;
+                                } else {
+                                    country.borders.forEach(borderCountry => {
+                                        if (borderCountry.owner != country.owner) {
+                                            map.regions[code].element.config.style.selected.fill = "#808080";
+                                            map.setSelectedRegions(code);
+                                            map.regions[borderCountry.code].element.config.style.selected.fill = "#E5E5E5";
+                                            map.setSelectedRegions(borderCountry.code);
+                                        }
+                                    });
+                                    clicked = 1;
+                                }
+
                             } else {
-                                country.borders.forEach(borderCountry => {
-                                    if (borderCountry.owner != country.owner) {                               
-                                        map.regions[code].element.config.style.selected.fill = "#808080";
-                                        map.setSelectedRegions(code);
-                                        map.regions[borderCountry.code].element.config.style.selected.fill = "#E5E5E5";
-                                        map.setSelectedRegions(borderCountry.code);
-                                    }
-                                });
-                                clicked = 1;
+                                $("#map").append(`
+                                <div id="map-menu-popup">
+                                    <div id="map-menu-popup-add">Add to ` + country.name + `</div>
+                                    <div id="map-menu-popup-exit">Exit</div>
+                                </div>
+                                `);
+                                $("#map-menu-popup-exit").click(function () {
+                                    $("#map-menu-popup").detach("");
+                                })
                             }
                         }
                     });
@@ -396,17 +410,20 @@ class Game {
             <div id="map-menu-reassign">Reassign</div>
         </div>
         `);
-
         $("#map-menu-add").click(function () {
+            //$("#map-menu").html("");
+            atack = 0;
             console.log('Add');
         })
         $("#map-menu-atack").click(function () {
+            //$("#map-menu").html("");
+            atack = 1;
             console.log('Atack');
         })
         $("#map-menu-reassign").click(function () {
+            //$("#map-menu").html("");
             console.log('Reassign');
         })
-
         $("#map").append(`
         <div id="map-players">
             <div id="map-players-player-1">Player 1</div>
