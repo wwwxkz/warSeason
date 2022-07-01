@@ -188,55 +188,118 @@ class Map {
     }
 }
 
-// South America
-const py = new Country('Paraguay', 'PY');
+// Word
+//  - North America
+const ca = new Country('Central America', 'XX');
+const wus = new Country('Western United States', 'XX');
+const eus = new Country('Eastern United States', 'XX');
+const qc = new Country('Quebec', 'XX');
+const on = new Country('Ontario', 'XX');
+const ab = new Country('Alberta', 'XX');
+const ak = new Country('Alaska', 'XX');
+const nwt = new Country('North West Territory', 'XX');
+const gl = new Country('Greenland', 'XX');
+// Fix
+ca.setBorders([wus, eus]);
+wus.setBorders([wus, eus]);
+eus.setBorders([wus, eus]);
+qc.setBorders([wus, eus]);
+on.setBorders([wus, eus]);
+ab.setBorders([wus, eus]);
+ak.setBorders([wus, eus]);
+nwt.setBorders([wus, eus]);
+gl.setBorders([wus, eus]);
+//  - South America
 const co = new Country('Colombia', 'CO');
-const ve = new Country('Venezuela', 'VE');
-const cl = new Country('Chile', 'CL');
-const sr = new Country('Suriname', 'SR');
-const bo = new Country('Bolivia', 'BO');
-const ec = new Country('Ecuador', 'EC');
 const ar = new Country('Argentina', 'AR');
-const gy = new Country('Guyana', 'GY');
 const br = new Country('Brazil', 'BR');
 const pe = new Country('Peru', 'PE');
-const uy = new Country('Uruguay', 'UY');
-const fk = new Country('Falkland Is.', 'FK');
-py.setBorders([ar, bo, br]);
-co.setBorders([ec, pe, br, ve]);
-ve.setBorders([co, br, gy]);
-cl.setBorders([ar, bo, pe]);
-sr.setBorders([gy, bo, br]);
-bo.setBorders([ar, pe, br, cl, py]);
-ec.setBorders([pe, co]);
-ar.setBorders([uy, py, br, cl, bo]);
-gy.setBorders([br, sr, ve]);
-br.setBorders([uy, ar, py, bo, pe, co, ve, gy, sr]);
-pe.setBorders([cl, bo, br, ec, co]);
-uy.setBorders([br, ar]);
-fk.setBorders([ar]);
-const southAmerica = [py, co, ve, cl, sr, bo, ec, ar, gy, br, pe, uy, fk];
+co.setBorders([br, pe]);
+ar.setBorders([br, pe]);
+br.setBorders([ar, co, pe]);
+pe.setBorders([br, ar, co]);
+//  - Europe
+const uk = new Country('Ukraine', 'XX');
+const sc = new Country('Scandinavia', 'XX');
+const ne = new Country('Northern Europe', 'XX');
+const se = new Country('Southern Europe', 'XX');
+const we = new Country('Western Europe', 'XX');
+const gb = new Country('Great Britain', 'XX');
+const il = new Country('Iceland', 'XX');
+// Fix
+uk.setBorders([br, pe]);
+sc.setBorders([br, pe]);
+ne.setBorders([ar, co, pe]);
+se.setBorders([br, ar, co]);
+we.setBorders([br, pe]);
+gb.setBorders([ar, co, pe]);
+il.setBorders([br, ar, co]);
+//  - Africa
+const na = new Country('North Africa', 'XX');
+const eg = new Country('Egypt', 'XX');
+const cg = new Country('Congo', 'XX');
+const ea = new Country('East Africa', 'XX');
+const sa = new Country('South Africa', 'XX');
+const mg = new Country('Madagascar', 'XX');
+// Fix
+na.setBorders([br, pe]);
+eg.setBorders([br, pe]);
+cg.setBorders([ar, co, pe]);
+ea.setBorders([br, ar, co]);
+sa.setBorders([br, pe]);
+mg.setBorders([ar, co, pe]);
+//  - Asia
+const sb = new Country('Siberia', 'XX');
+const ur = new Country('Ural', 'XX');
+const af = new Country('Afghanistan', 'XX');
+const yk = new Country('Yakutsk', 'XX');
+const kc = new Country('Kamchatka', 'XX');
+const ir = new Country('Irkutsk', 'XX');
+const mo = new Country('Mongolia', 'XX');
+const jp = new Country('Japan', 'XX');
+const cn = new Country('China', 'XX');
+const id = new Country('India', 'XX');
+const me = new Country('Middle East', 'XX');
+const sm = new Country('Siam', 'XX');
+// Fix
+sb.setBorders([br, pe]);
+ur.setBorders([br, pe]);
+af.setBorders([ar, co, pe]);
+yk.setBorders([br, ar, co]);
+kc.setBorders([br, pe]);
+ir.setBorders([ar, co, pe]);
+mo.setBorders([ar, co, pe]);
+jp.setBorders([br, ar, co]);
+cn.setBorders([br, pe]);
+id.setBorders([ar, co, pe]);
+me.setBorders([br, pe]);
+sm.setBorders([ar, co, pe]);
+//  - Australis
+const wa = new Country('Western Australia', 'XX');
+const eas = new Country('Eastern Australia', 'XX');
+const is = new Country('Indonesia', 'XX');
+const ng = new Country('New Guinea', 'XX');
+// Fix
+wa.setBorders([br, pe]);
+eas.setBorders([br, pe]);
+is.setBorders([ar, co, pe]);
+ng.setBorders([br, ar, co]);
+//
+const world = [
+    // North America
+    ca, wus, eus, qc, on, ab, ak, nwt, gl,
+    // South America
+    co, ar, br, pe,
+    // Europe
+    uk, sc, ne, se, we, gb, il,
+    // Africa
+    na, eg, cg, ea, sa, mg,
+    // Asia
+    sb, ur, af, yk, kc, ir, mo, jp, cn, id, me, sm,
+    // Australis
+    wa, eas, is, ng
+];
 
-// North America
-// const mexico = new Country('Mexico');
-// const california = new Country('California');
-// const newYork = new Country('New York');
-// const labrador = new Country('Labrador');
-// const ottawa = new Country('Ottawa');
-// const vancouver = new Country('Vancouver');
-// const mackenzie = new Country('Mackenzie');
-// const alaska = new Country('Alaska');
-// const greenland = new Country('Greenland');
-// mexico.setBorders([california, newYork]); // Colombia
-// california.setBorders([newYork, ottawa, vancouver, mexico]);
-// newYork.setBorders([ottawa, california, mexico, labrador]);
-// labrador.setBorders([ottawa, newYork, greenland]);
-// ottawa.setBorders([newYork, california, labrador, vancouver, mackenzie]);
-// vancouver.setBorders([ottawa, california, mackenzie, alaska]);
-// mackenzie.setBorders([alaska, vancouver]);
-// alaska.setBorders([mackenzie, vancouver]); // Vladivostok
-// greenland.setBorders([mackenzie, labrador]); // Iceland
-// const northAmerica = [mexico, california, newYork, labrador, ottawa, vancouver, mackenzie, alaska, greenland];
 
 class Game {
     constructor() {
@@ -246,8 +309,11 @@ class Game {
         const players = [p1, p2];
         this.players = players;
         // Use southAmerica map
-        this.countries = southAmerica;
-        this.map = new Map(southAmerica, players);
+        // this.countries = southAmerica;
+        // this.map = new Map(southAmerica, players);
+        // Use world map
+        this.countries = world;
+        this.map = new Map(world, players);
         // Start game
         this.round = new Round();
         this.turn(this.countries);
@@ -263,7 +329,7 @@ class Game {
             }
             owner = owner();
             var map = new jvm.Map({
-                map: 'south_america_mill',
+                map: 'world',
                 container: $('#map'),
                 series: {
                     regions: [{
@@ -306,7 +372,7 @@ class Game {
                 },
                 onRegionTipShow: function (e, el, code) {
                     countries.forEach(country => {
-                        if (country.code == code) {
+                        if (country.name == code) {
                             el.html(el.html() + ' (' + country.owner.name + ' - ' + country.status() + ')');
                         }
                     });

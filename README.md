@@ -59,3 +59,18 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 # Know issues
 
 - Use player color instead of both player and country
+
+# Map creation flow
+
+Get an png or pdf image, and put in Inkscape, 
+- Go to path and Trace bitmap
+- Path and simplify if you want to
+- Save as .svg
+
+Go to https://svgedit.netlify.app/editor/index.html
+- Open your .svg file
+- Go to the svg icon in the upper right corner
+- Copy your svg path and puts in https://ruibarreira.github.io/jvectormap-svg-converter/
+- Change your countries names and ids
+- Save and load to a .js file
+- Calls the .js file with jVectorMap 
