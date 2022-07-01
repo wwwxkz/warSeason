@@ -82,13 +82,20 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 
 ### Dev Progress
 
+
+- [ ] Go back to default color scheme after clicking in country again
+- [ ] Add troops to interface
+- [ ] Turn steps
+- [ ] Atack to interface
+- [ ] Restrict atack to border countries
+- [ ] Replace console.logs to interface parallels
+- [ ] Player and total troops to interface
 - [ ] Events
 - [ ] Troops by round
 - [ ] Cards
 - [ ] Turn time
-- [ ] Turn steps description
-- [ ] Turn steps to interface
-- [ ] Player and total troops to interface
 - [ ] Use player color instead of both player and country
 - [ ] Atack as long as you can
 - [ ] Server / Client
+- [ ] Add players by IP
+- [ ] Verify if everyone is ready before starting a new game

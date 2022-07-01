@@ -134,7 +134,6 @@ class Round {
         return;
     }
     restartGame() {
-        // Verifies if everyone clicked before starting a new game
         throw new Error("Restarting");
         return;
     }
@@ -150,10 +149,11 @@ class Map {
     }
     getCountries() {
         Object.keys(this.countries).forEach(key => {
-            //console.log(key, '- Use country ->', this.countries[key]);
-            console.log(key, '- Country name ->', this.countries[key].name);
-            console.log('# Country owner ->', this.countries[key].owner);
-            console.log('# Country troops ->', this.countries[key].troops);
+            return;
+            // console.log(key, '- Use country ->', this.countries[key]);
+            // console.log(key, '- Country name ->', this.countries[key].name);
+            // console.log('# Country owner ->', this.countries[key].owner);
+            // console.log('# Country troops ->', this.countries[key].troops);
         });
     }
     setPlayersColor() {
@@ -303,18 +303,12 @@ const world = [
 
 class Game {
     constructor() {
-        // Comming -> add plays by IP
         const p1 = new Player('wwwxkz');
         const p2 = new Player('klaus');
         const players = [p1, p2];
         this.players = players;
-        // Use southAmerica map
-        // this.countries = southAmerica;
-        // this.map = new Map(southAmerica, players);
-        // Use world map
         this.countries = world;
         this.map = new Map(world, players);
-        // Start game
         this.round = new Round();
         this.turn(this.countries);
     }
@@ -380,20 +374,18 @@ class Game {
                 onRegionClick: function (event, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
+                            if (typeof clicked !== 'undefined') {
+                                var clicked = 1;
+                            }
                             country.borders.forEach(borderCountry => {
-                                if (borderCountry.owner != country.owner) {
-                                    console.log(borderCountry);
-                                    // map.clearSelectedRegions();
-                                    // Origin Country
-                                    map.regions[code].element.config.style.selected.fill = "#00FF00";
+                                if (borderCountry.owner != country.owner) {                               
+                                    map.regions[code].element.config.style.selected.fill = "#808080";
                                     map.setSelectedRegions(code);
-                                    // Borders
-                                    map.regions[borderCountry.code].element.config.style.selected.fill = "#FFFF00";
+                                    map.regions[borderCountry.code].element.config.style.selected.fill = "#E5E5E5";
                                     map.setSelectedRegions(borderCountry.code);
                                 }
-                                // Restrict next click to those countries
-                                // Go back to normal view by clicking to your country
                             });
+                            clicked = 1;
                         }
                     });
                 }
