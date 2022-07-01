@@ -380,21 +380,22 @@ class Game {
                 onRegionClick: function (event, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
-                            console.log('Country: ', country.name);
-                            console.log('Code: ', country.code);
-                            console.log('Troops: ', country.status());
-                            console.log(country.name, '- Can atack countries in black');
-                            //console.log('Borders: ', country.borders);
-                            country.borders.forEach(country => {
-                                console.log('Borders: ', country.name);
-                                // map.series.regions[0].setValues({'color' : '#e5e5e5'});
-                                // Make country black
+                            country.borders.forEach(borderCountry => {
+                                if (borderCountry.owner != country.owner) {
+                                    console.log(borderCountry);
+                                    // map.clearSelectedRegions();
+                                    // Origin Country
+                                    map.regions[code].element.config.style.selected.fill = "#00FF00";
+                                    map.setSelectedRegions(code);
+                                    // Borders
+                                    map.regions[borderCountry.code].element.config.style.selected.fill = "#FFFF00";
+                                    map.setSelectedRegions(borderCountry.code);
+                                }
                                 // Restrict next click to those countries
                                 // Go back to normal view by clicking to your country
                             });
                         }
                     });
-                    alert(code);
                 }
             });
         });
