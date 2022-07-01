@@ -407,6 +407,14 @@ class Game {
             console.log('Reassign');
         })
 
+        $("#map").append(`
+        <div id="map-players">
+            <div id="map-players-player-1">Player 1</div>
+            <div id="map-players-player-2">Player 2</div>
+            <div id="map-players-player-3">Player 3</div>
+        </div>
+        `);
+
         //this.round.nextRound(this.players, this.countries);
     }
 }

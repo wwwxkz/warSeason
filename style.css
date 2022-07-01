@@ -1,11 +1,4 @@
-
-#map {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#map-menu {
+#map-menu, #map-players {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -28,4 +21,17 @@
 }
 #map-menu > div:last-child {
   padding-right: 20px;
+}
+
+#map-players {
+  flex-direction: column;
+  left: 10px;
+  top: 50%;
+}
+
+#map-players > div {
+  padding-top: 10px;
+}
+#map-players > div:last-child {
+  padding-bottom: 10px;
 }
