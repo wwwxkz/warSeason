@@ -309,6 +309,7 @@ class Game {
     }
     turn(countries) {
         var atack = 0;
+        var reassign = 0;
         $(function () {
             function owner() {
                 let json = {}
@@ -391,6 +392,9 @@ class Game {
                                 $("#map").append(`
                                 <div id="map-menu-popup">
                                     <div id="map-menu-popup-add">Add to ` + country.name + `</div>
+                                    <div id="map-menu-popup-input">
+                                        <input type="text">
+                                    </div>
                                     <div id="map-menu-popup-exit">Exit</div>
                                 </div>
                                 `);
@@ -421,6 +425,7 @@ class Game {
             console.log('Atack');
         })
         $("#map-menu-reassign").click(function () {
+            reassign = 1;
             //$("#map-menu").html("");
             console.log('Reassign');
         })
