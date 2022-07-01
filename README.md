@@ -1,5 +1,35 @@
-# warSeason
+# Play
 
+### Download
+
+You can download by clicking <a href="https://github.com/wwwxkz/warSeason/archive/refs/heads/main.zip">here</a>, then extract the .zip file, and open index.html 
+
+You can have more information about the game by opening your browser's dev console (usually by clicking F12) and going to console option. There will be logs about all the game actions, and functions not integrated with the interface yet.
+
+### How to play
+
+Get your pointer over a country and you will get a popup window telling you the country owner and the troops in it, you can also see the color of this player and just  by looking in the map know which countries this player has. 
+
+To atack you have to click in a country of your ownership, and then click in a country that changed color (usually black)
+
+When you atack there is a Random Number Generator from 0 to 3 that will decides how much troops you will lose, and your enemy will lose in its territory
+
+### Create your own map
+
+Get an png or pdf image, and put in Inkscape, 
+- Go to path and Trace bitmap
+- Path and simplify if you want to
+- Save as .svg
+
+Go to https://svgedit.netlify.app/editor/index.html
+- Open your .svg file
+- Go to the svg icon in the upper right corner
+- Copy your svg path and puts in https://ruibarreira.github.io/jvectormap-svg-converter/
+- Change your countries names and ids
+- Save and load to a .js file
+- Calls the .js file with jVectorMap 
+
+# About
 ### What
 
 Risk is a strategy board game of diplomacy, conflict and conquest for two to six players. The standard version is played on a board depicting a political map of the world, divided into forty-two territories, which are grouped into six continents. Turns rotate among players who control armies of playing pieces with which they attempt to capture territories from other players, with results determined by dice rolls. Players may form and dissolve alliances during the course of the game. The goal of the game is to occupy every territory on the board and, in doing so, eliminate the other players. The game can be lengthy, requiring several hours to multiple days to finish. European versions are structured so that each player has a limited "secret mission" objective that shortens the game.
@@ -50,27 +80,15 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - Server / Client
   - Gathering options
 
-### Coming
+### Dev Progress
 
-- Troops by round
-- Atack as long as you can
-- Server / Client
-
-# Know issues
-
-- Use player color instead of both player and country
-
-# Map creation flow
-
-Get an png or pdf image, and put in Inkscape, 
-- Go to path and Trace bitmap
-- Path and simplify if you want to
-- Save as .svg
-
-Go to https://svgedit.netlify.app/editor/index.html
-- Open your .svg file
-- Go to the svg icon in the upper right corner
-- Copy your svg path and puts in https://ruibarreira.github.io/jvectormap-svg-converter/
-- Change your countries names and ids
-- Save and load to a .js file
-- Calls the .js file with jVectorMap 
+- [ ] Events
+- [ ] Troops by round
+- [ ] Cards
+- [ ] Turn time
+- [ ] Turn steps description
+- [ ] Turn steps to interface
+- [ ] Player and total troops to interface
+- [ ] Use player color instead of both player and country
+- [ ] Atack as long as you can
+- [ ] Server / Client
