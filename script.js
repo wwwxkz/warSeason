@@ -200,9 +200,9 @@ eus.setBorders([wus, on, ca, qc]);
 qc.setBorders([eus, on]);
 on.setBorders([eus, qc, wus, ab, nwt]);
 ab.setBorders([on, wus, nwt, ak]);
-ak.setBorders([ab, nwt]);
+ak.setBorders([ab, nwt]); // More
 nwt.setBorders([ak, ab, on]);
-gl.setBorders([qc, on, nwt]);
+gl.setBorders([qc, on, nwt]); // More
 //  - South America
 const co = new Country('Colombia', 'CO');
 const ar = new Country('Argentina', 'AR');
@@ -210,7 +210,7 @@ const br = new Country('Brazil', 'BR');
 const pe = new Country('Peru', 'PE');
 co.setBorders([br, pe]);
 ar.setBorders([br, pe]);
-br.setBorders([ar, co, pe]);
+br.setBorders([ar, co, pe]); // More
 pe.setBorders([br, ar, co]);
 //  - Europe
 const uk = new Country('Ukraine', 'UK');
@@ -220,14 +220,13 @@ const se = new Country('Southern Europe', 'SE');
 const we = new Country('Western Europe', 'WE');
 const gb = new Country('Great Britain', 'GB');
 const il = new Country('Iceland', 'IL');
-// Fix
-uk.setBorders([br, pe]);
-sc.setBorders([br, pe]);
-ne.setBorders([ar, co, pe]);
-se.setBorders([br, ar, co]);
-we.setBorders([br, pe]);
-gb.setBorders([ar, co, pe]);
-il.setBorders([br, ar, co]);
+uk.setBorders([ne, sc, se]); // More
+sc.setBorders([uk, il, ne, gb]);
+ne.setBorders([se, we, gb, sc, uk]);
+se.setBorders([we, ne, uk]); // More
+we.setBorders([se, ne, gb]);
+gb.setBorders([il, we, sc, ne]);
+il.setBorders([gb, sc]);
 //  - Africa
 const na = new Country('North Africa', 'NA');
 const eg = new Country('Egypt', 'EG');
@@ -235,13 +234,12 @@ const cg = new Country('Congo', 'CG');
 const ea = new Country('East Africa', 'EA');
 const sa = new Country('South Africa', 'SA');
 const mg = new Country('Madagascar', 'MG');
-// Fix
-na.setBorders([br, pe]);
-eg.setBorders([br, pe]);
-cg.setBorders([ar, co, pe]);
-ea.setBorders([br, ar, co]);
-sa.setBorders([br, pe]);
-mg.setBorders([ar, co, pe]);
+na.setBorders([eg, cg, ea]); // More
+eg.setBorders([na, ea]); // More
+cg.setBorders([na, ea, sa]);
+ea.setBorders([cg, sa, na, eg]);
+sa.setBorders([cg, ea]);
+mg.setBorders([sa, ea]);
 //  - Asia
 const sb = new Country('Siberia', 'SB');
 const ur = new Country('Ural', 'UR');
@@ -273,11 +271,10 @@ const wa = new Country('Western Australia', 'WA');
 const eas = new Country('Eastern Australia', 'EAS');
 const is = new Country('Indonesia', 'IS');
 const ng = new Country('New Guinea', 'NG');
-// Fix
-wa.setBorders([br, pe]);
-eas.setBorders([br, pe]);
-is.setBorders([ar, co, pe]);
-ng.setBorders([br, ar, co]);
+wa.setBorders([eas, is, ng]);
+eas.setBorders([ng, wa]);
+is.setBorders([wa, ng]); // More
+ng.setBorders([is, eas, wa]);
 //
 const world = [
     // North America
