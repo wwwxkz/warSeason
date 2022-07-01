@@ -82,8 +82,13 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 
 ### Dev Progress
 
-
-- [ ] Go back to default color scheme after clicking in country again
+- [X] RNG for country owner
+- [X] Goals
+- [X] Country colors
+- [X] Goals logic
+- [X] Game class
+- [X] Map class instead of countries list
+- [X] Go back to default color scheme after clicking in country again
 - [ ] Add troops to interface
 - [ ] Turn steps
 - [ ] Atack to interface

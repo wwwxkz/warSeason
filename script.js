@@ -135,7 +135,6 @@ class Round {
     }
     restartGame() {
         throw new Error("Restarting");
-        return;
     }
 }
 
@@ -149,11 +148,7 @@ class Map {
     }
     getCountries() {
         Object.keys(this.countries).forEach(key => {
-            return;
-            // console.log(key, '- Use country ->', this.countries[key]);
-            // console.log(key, '- Country name ->', this.countries[key].name);
-            // console.log('# Country owner ->', this.countries[key].owner);
-            // console.log('# Country troops ->', this.countries[key].troops);
+            return this.countries[key];
         });
     }
     setPlayersColor() {
@@ -322,6 +317,7 @@ class Game {
                 return json;
             }
             owner = owner();
+            var clicked = 0;
             var map = new jvm.Map({
                 map: 'world',
                 container: $('#map'),
@@ -374,18 +370,20 @@ class Game {
                 onRegionClick: function (event, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
-                            if (typeof clicked !== 'undefined') {
-                                var clicked = 1;
+                            if (clicked == 1) {
+                                map.clearSelectedRegions()
+                                clicked = 0;
+                            } else {
+                                country.borders.forEach(borderCountry => {
+                                    if (borderCountry.owner != country.owner) {                               
+                                        map.regions[code].element.config.style.selected.fill = "#808080";
+                                        map.setSelectedRegions(code);
+                                        map.regions[borderCountry.code].element.config.style.selected.fill = "#E5E5E5";
+                                        map.setSelectedRegions(borderCountry.code);
+                                    }
+                                });
+                                clicked = 1;
                             }
-                            country.borders.forEach(borderCountry => {
-                                if (borderCountry.owner != country.owner) {                               
-                                    map.regions[code].element.config.style.selected.fill = "#808080";
-                                    map.setSelectedRegions(code);
-                                    map.regions[borderCountry.code].element.config.style.selected.fill = "#E5E5E5";
-                                    map.setSelectedRegions(borderCountry.code);
-                                }
-                            });
-                            clicked = 1;
                         }
                     });
                 }
