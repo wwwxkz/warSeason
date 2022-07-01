@@ -308,8 +308,7 @@ class Game {
         this.turn(this.countries);
     }
     turn(countries) {
-        var atack = 0;
-        var reassign = 0;
+        var turn = 0;
         $(function () {
             function owner() {
                 let json = {}
@@ -372,7 +371,7 @@ class Game {
                 onRegionClick: function (event, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
-                            if (atack == 1) {
+                            if (turn == 1) {
                                 if (clicked == 1) {
                                     map.clearSelectedRegions()
                                     clicked = 0;
@@ -388,7 +387,8 @@ class Game {
                                     clicked = 1;
                                 }
 
-                            } else {
+                            } 
+                            if (turn == 0) {
                                 $("#map").append(`
                                 <div id="map-menu-popup">
                                     <div id="map-menu-popup-add">Add to ` + country.name + `</div>
@@ -402,6 +402,9 @@ class Game {
                                     $("#map-menu-popup").detach("");
                                 })
                             }
+                            if (turn == 3) {
+                                return;
+                            }
                         }
                     });
                 }
@@ -409,25 +412,31 @@ class Game {
         });
         $("#map").append(`
         <div id="map-menu">
-            <div id="map-menu-add">Add</div>
-            <div id="map-menu-atack">Atack</div>
-            <div id="map-menu-reassign">Reassign</div>
+            <div id="map-menu-add"><a>Add</a></div>
+            <div id="map-menu-atack"><a>Atack</a></div>
+            <div id="map-menu-reassign"><a>Reassign</a></div>
         </div>
         `);
         $("#map-menu-add").click(function () {
             //$("#map-menu").html("");
-            atack = 0;
-            console.log('Add');
+            turn = 0;
+            $("#map-menu-reassign").removeClass('active');
+            $("#map-menu-atack").removeClass('active');
+            $("#map-menu-add").addClass('active');
         })
         $("#map-menu-atack").click(function () {
             //$("#map-menu").html("");
-            atack = 1;
-            console.log('Atack');
+            turn = 1;
+            $("#map-menu-add").removeClass('active');
+            $("#map-menu-reassign").removeClass('active');
+            $("#map-menu-atack").addClass('active');
         })
         $("#map-menu-reassign").click(function () {
-            reassign = 1;
             //$("#map-menu").html("");
-            console.log('Reassign');
+            turn = 3;
+            $("#map-menu-add").removeClass('active');
+            $("#map-menu-atack").removeClass('active');
+            $("#map-menu-reassign").addClass('active');
         })
         $("#map").append(`
         <div id="map-players">

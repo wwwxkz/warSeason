@@ -23,6 +23,10 @@
   padding-right: 20px;
 }
 
+.active {
+  color: #ff0000;
+}
+
 #map-players {
   flex-direction: column;
   left: 10px;
