@@ -90,11 +90,12 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [X] Game class
 - [X] Map class instead of countries list
 - [X] Go back to default color scheme after clicking in country again
+- [X] Replace console.logs to interface parallels
 - [ ] Add troops to interface
+- [ ] Replace 'you can not atack with just one troop' by a custom popup
 - [ ] Turn steps
 - [ ] Atack to interface
 - [ ] Restrict atack to border countries
-- [ ] Replace console.logs to interface parallels
 - [ ] Player and total troops to interface
 - [ ] Events
 - [ ] Troops by round
