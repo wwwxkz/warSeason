@@ -190,15 +190,15 @@ class Map {
 
 // Word
 //  - North America
-const ca = new Country('Central America', 'XX');
-const wus = new Country('Western United States', 'XX');
-const eus = new Country('Eastern United States', 'XX');
-const qc = new Country('Quebec', 'XX');
-const on = new Country('Ontario', 'XX');
-const ab = new Country('Alberta', 'XX');
-const ak = new Country('Alaska', 'XX');
-const nwt = new Country('North West Territory', 'XX');
-const gl = new Country('Greenland', 'XX');
+const ca = new Country('Central America', 'CA');
+const wus = new Country('Western United States', 'WUS');
+const eus = new Country('Eastern United States', 'EUS');
+const qc = new Country('Quebec', 'QC');
+const on = new Country('Ontario', 'ON');
+const ab = new Country('Alberta', 'AB');
+const ak = new Country('Alaska', 'AK');
+const nwt = new Country('North West Territory', 'NWT');
+const gl = new Country('Greenland', 'GL');
 // Fix
 ca.setBorders([wus, eus]);
 wus.setBorders([wus, eus]);
@@ -219,13 +219,13 @@ ar.setBorders([br, pe]);
 br.setBorders([ar, co, pe]);
 pe.setBorders([br, ar, co]);
 //  - Europe
-const uk = new Country('Ukraine', 'XX');
-const sc = new Country('Scandinavia', 'XX');
-const ne = new Country('Northern Europe', 'XX');
-const se = new Country('Southern Europe', 'XX');
-const we = new Country('Western Europe', 'XX');
-const gb = new Country('Great Britain', 'XX');
-const il = new Country('Iceland', 'XX');
+const uk = new Country('Ukraine', 'UK');
+const sc = new Country('Scandinavia', 'SC');
+const ne = new Country('Northern Europe', 'NE');
+const se = new Country('Southern Europe', 'SE');
+const we = new Country('Western Europe', 'WE');
+const gb = new Country('Great Britain', 'GB');
+const il = new Country('Iceland', 'IL');
 // Fix
 uk.setBorders([br, pe]);
 sc.setBorders([br, pe]);
@@ -235,12 +235,12 @@ we.setBorders([br, pe]);
 gb.setBorders([ar, co, pe]);
 il.setBorders([br, ar, co]);
 //  - Africa
-const na = new Country('North Africa', 'XX');
-const eg = new Country('Egypt', 'XX');
-const cg = new Country('Congo', 'XX');
-const ea = new Country('East Africa', 'XX');
-const sa = new Country('South Africa', 'XX');
-const mg = new Country('Madagascar', 'XX');
+const na = new Country('North Africa', 'NA');
+const eg = new Country('Egypt', 'EG');
+const cg = new Country('Congo', 'CG');
+const ea = new Country('East Africa', 'EA');
+const sa = new Country('South Africa', 'SA');
+const mg = new Country('Madagascar', 'MG');
 // Fix
 na.setBorders([br, pe]);
 eg.setBorders([br, pe]);
@@ -249,18 +249,18 @@ ea.setBorders([br, ar, co]);
 sa.setBorders([br, pe]);
 mg.setBorders([ar, co, pe]);
 //  - Asia
-const sb = new Country('Siberia', 'XX');
-const ur = new Country('Ural', 'XX');
-const af = new Country('Afghanistan', 'XX');
-const yk = new Country('Yakutsk', 'XX');
-const kc = new Country('Kamchatka', 'XX');
-const ir = new Country('Irkutsk', 'XX');
-const mo = new Country('Mongolia', 'XX');
-const jp = new Country('Japan', 'XX');
-const cn = new Country('China', 'XX');
-const id = new Country('India', 'XX');
-const me = new Country('Middle East', 'XX');
-const sm = new Country('Siam', 'XX');
+const sb = new Country('Siberia', 'SB');
+const ur = new Country('Ural', 'UR');
+const af = new Country('Afghanistan', 'AF');
+const yk = new Country('Yakutsk', 'YK');
+const kc = new Country('Kamchatka', 'KC');
+const ir = new Country('Irkutsk', 'IR');
+const mo = new Country('Mongolia', 'MO');
+const jp = new Country('Japan', 'JP');
+const cn = new Country('China', 'CN');
+const id = new Country('India', 'ID');
+const me = new Country('Middle East', 'ME');
+const sm = new Country('Siam', 'SM');
 // Fix
 sb.setBorders([br, pe]);
 ur.setBorders([br, pe]);
@@ -275,10 +275,10 @@ id.setBorders([ar, co, pe]);
 me.setBorders([br, pe]);
 sm.setBorders([ar, co, pe]);
 //  - Australis
-const wa = new Country('Western Australia', 'XX');
-const eas = new Country('Eastern Australia', 'XX');
-const is = new Country('Indonesia', 'XX');
-const ng = new Country('New Guinea', 'XX');
+const wa = new Country('Western Australia', 'WA');
+const eas = new Country('Eastern Australia', 'EAS');
+const is = new Country('Indonesia', 'IS');
+const ng = new Country('New Guinea', 'NG');
 // Fix
 wa.setBorders([br, pe]);
 eas.setBorders([br, pe]);
@@ -372,7 +372,7 @@ class Game {
                 },
                 onRegionTipShow: function (e, el, code) {
                     countries.forEach(country => {
-                        if (country.name == code) {
+                        if (country.code == code) {
                             el.html(el.html() + ' (' + country.owner.name + ' - ' + country.status() + ')');
                         }
                     });
