@@ -274,7 +274,7 @@ we.setBorders([se, ne, gb]);
 gb.setBorders([il, we, sc, ne]);
 il.setBorders([gb, sc, gl]);
 //  - Africa
-na.setBorders([eg, cg, ea, se, br]);
+na.setBorders([eg, cg, ea, se, br, we]);
 eg.setBorders([na, ea, me, se]);
 cg.setBorders([na, ea, sa]);
 ea.setBorders([cg, sa, na, eg, mg]);
