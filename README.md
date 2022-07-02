@@ -97,7 +97,7 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [X] Add reassing to interface
 - [X] Replace 'you can not atack with just one troop' by a custom popup
 - [X] Troops by round
-- [ ] Fix fromCountry troops when reassing
+- [X] Fix fromCountry troops when reassing
 - [ ] Turn steps
 - [ ] Player and total troops to interface
 - [ ] Events
