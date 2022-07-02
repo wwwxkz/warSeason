@@ -1,3 +1,18 @@
+body {
+  margin: 0;
+}
+head {
+  height:100%;
+}
+#map {
+  width: 100% !important;
+  height:100vh !important;;
+}
+#map > div > svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 #map-menu, #map-players, #map-menu-popup {
   display: flex;
   justify-content: space-around;
