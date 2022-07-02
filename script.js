@@ -478,6 +478,9 @@ class Game {
                                 `);
                                 $("#map-menu-popup-add-add").click(function () {
                                     let troops = $("input[type=number][name=map-menu-popup-add-input]").val()
+                                    if (troops <= 0) {
+                                        troops = 0;
+                                    }
                                     if (troops <= country.owner.troops) {
                                         country.addTrops(parseInt(troops));
                                         country.owner.troops -= troops;
