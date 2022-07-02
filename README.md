@@ -95,12 +95,12 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [X] Atack to interface
 - [X] Add troops to interface
 - [X] Add reassing to interface
+- [X] Replace 'you can not atack with just one troop' by a custom popup
+- [X] Troops by round
 - [ ] Fix fromCountry troops when reassing
-- [ ] Replace 'you can not atack with just one troop' by a custom popup
 - [ ] Turn steps
 - [ ] Player and total troops to interface
 - [ ] Events
-- [ ] Troops by round
 - [ ] Cards
 - [ ] Turn time
 - [ ] Use player color instead of both player and country

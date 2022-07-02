@@ -47,14 +47,24 @@ class Country {
                         }
                     }
                     found = true;
-                } 
+                }
             });
             if (found != true) {
-                console.log('This country is not a border of yours or it is your territorty')
+                return {
+                    status: false,
+                    message: 'This country is not a border of yours or it is your territorty'
+                }
             }
         }
         else {
-            console.log('You can not atack with just one troop')
+            return {
+                status: false,
+                message: 'You can not atack with just one troop'
+            }
+        }
+        return {
+            status: true,
+            message: ''
         }
     }
     rng() {
@@ -90,7 +100,7 @@ class Round {
         players.forEach(player => {
             player.troops += 5;
         });
-        this.verifyWin(players, countries);
+        //this.verifyWin(players, countries);
     }
     verifyWin(players, countries) {
         // Conquer 3 countries
@@ -188,9 +198,6 @@ class Map {
             randomCountries[key].setOwner(this.players[pkey]);
             randomCountries[key].setColor(this.players[pkey].color);
         });
-    }
-    status(id) {
-        console.log(this.countries[id].status());
     }
 }
 
@@ -319,9 +326,9 @@ class Game {
         this.countries = world;
         this.map = new Map(world, players);
         this.round = new Round();
-        this.turn(this.countries);
+        this.turn(this.countries, this.round, this.players);
     }
-    turn(countries) {
+    turn(countries, round, players) {
         var turn = 0;
         $(function () {
             function owner() {
@@ -376,7 +383,7 @@ class Game {
                         }
                     }
                 },
-                onRegionLabelShow: function(e, el, code){
+                onRegionLabelShow: function (e, el, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
                             el.html(el.html() + country.status());
@@ -397,7 +404,7 @@ class Game {
                                 if (clicked == 1 && fromCountry == country) {
                                     map.clearSelectedRegions()
                                     var resetClicked = 0;
-                                } 
+                                }
                                 if (clicked != 1 || fromCountry == '') {
                                     country.borders.forEach(borderCountry => {
                                         if (borderCountry.owner != country.owner) {
@@ -409,34 +416,45 @@ class Game {
                                     });
                                     clicked = 1;
                                     fromCountry = country;
-                                } 
+                                }
                                 if (fromCountry != '') {
                                     if (fromCountry != country && fromCountry != '') {
-                                        fromCountry.atack(country);
-
-                                        // Fix
-                                        let json = {}
-                                        countries.forEach(country => {
-                                            json[country.code] = country.color;
-                                        });
-                                        owner = json;
-
-                                        map.series.regions[0].setValues(owner);
-                                        $("text[data-code=" + country.code + "]").text(country.status());
-                                        $("text[data-code=" + fromCountry.code + "]").text(fromCountry.status());
-                                        map.clearSelectedRegions()
-                                        resetClicked = 0;
+                                        const { status, message } = fromCountry.atack(country);
+                                        if (status == true) {
+                                            let json = {}
+                                            countries.forEach(country => {
+                                                json[country.code] = country.color;
+                                            });
+                                            owner = json;
+                                            map.series.regions[0].setValues(owner);
+                                            $("text[data-code=" + country.code + "]").text(country.status());
+                                            $("text[data-code=" + fromCountry.code + "]").text(fromCountry.status());
+                                            map.clearSelectedRegions()
+                                            resetClicked = 0;
+                                        } if (status == false) {
+                                            $("#map").append(`
+                                            <div id="map-menu-popup">
+                                                <div id="map-menu-popup-add"><a>` + message + `</a></div>                                            
+                                                <div id="map-menu-popup-add-exit">Exit</div>
+                                            </div>
+                                            `);
+                                            $("#map-menu-popup-add-exit").click(function () {
+                                                resetClicked = 0;
+                                                $("#map-menu-popup").detach("");
+                                            })
+                                        }
                                     }
                                 }
                                 if (resetClicked == 0) {
                                     fromCountry = '';
                                     clicked = 0;
                                 }
-                            } 
+                            }
                             if (turn == 0) {
                                 $("#map").append(`
                                 <div id="map-menu-popup">
                                     <div id="map-menu-popup-add">Add to ` + country.name + `</div>
+                                    <div id="map-menu-popup-max">Up to ` + country.owner.troops + `</div>
                                     <div>
                                         <input type="number" name="map-menu-popup-add-input">
                                     </div>
@@ -446,9 +464,16 @@ class Game {
                                 `);
                                 $("#map-menu-popup-add-add").click(function () {
                                     let troops = $("input[type=number][name=map-menu-popup-add-input]").val()
-                                    country.addTrops(parseInt(troops));
-                                    $("text[data-code=" + country.code + "]").text(country.status());
-                                    $("#map-menu-popup").detach("");
+                                    if (troops <= country.owner.troops) {
+                                        country.addTrops(parseInt(troops));
+                                        country.owner.troops -= troops;
+                                        $("text[data-code=" + country.code + "]").text(country.status());
+                                        $("#map-menu-popup").detach("");
+                                    } else {
+                                        $("#map-menu-popup").append(`
+                                            <div id="map-menu-popup-add">You do not have that many</div>                                
+                                        `);
+                                    }
                                 })
                                 $("#map-menu-popup-add-exit").click(function () {
                                     $("#map-menu-popup").detach("");
@@ -458,7 +483,7 @@ class Game {
                                 if (clicked == 1 && fromCountry == country) {
                                     map.clearSelectedRegions()
                                     var resetClicked = 0;
-                                } 
+                                }
                                 if (clicked != 1 || fromCountry == '') {
                                     country.borders.forEach(borderCountry => {
                                         if (borderCountry.owner == country.owner) {
@@ -470,7 +495,7 @@ class Game {
                                     });
                                     clicked = 1;
                                     fromCountry = country;
-                                } 
+                                }
                                 if (fromCountry != '') {
                                     if (fromCountry != country) {
                                         $("#map").append(`
@@ -542,8 +567,7 @@ class Game {
             $("#map-menu-reassign").addClass('active');
         });
         $("#map-menu-end").click(function () {
-            //this.round.nextRound(this.players, this.countries);
-            console.log('End');
+            round.nextRound(players, countries);
             $("#map-menu-add").removeClass('active');
             $("#map-menu-atack").removeClass('active');
             $("#map-menu-reassign").removeClass('active');
