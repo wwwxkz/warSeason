@@ -66,6 +66,7 @@ class Player {
     constructor(name) {
         this.name = name;
         this.goal = this.randomGoal();
+        this.troops = 5;
     }
     randomGoal() {
         let goals = [
@@ -86,6 +87,9 @@ class Round {
     }
     nextRound(players, countries) {
         this.round += 1;
+        players.forEach(player => {
+            player.troops += 5;
+        });
         this.verifyWin(players, countries);
     }
     verifyWin(players, countries) {
@@ -175,9 +179,11 @@ class Map {
             if (this.players.length == pkey) {
                 quotient = remainder;
             }
-            if (key == lkey + quotient) {
+            if (key == (parseInt(lkey) + parseInt(quotient))) {
                 lkey = key;
-                pkey += 1;
+                if (pkey + 1 != this.players.length) {
+                    pkey += 1;
+                }
             }
             randomCountries[key].setOwner(this.players[pkey]);
             randomCountries[key].setColor(this.players[pkey].color);
@@ -305,7 +311,10 @@ class Game {
     constructor() {
         const p1 = new Player('wwwxkz');
         const p2 = new Player('klaus');
-        const players = [p1, p2];
+        const p3 = new Player('alon');
+        const p4 = new Player('ket');
+        const p5 = new Player('ramon');
+        const players = [p1, p2, p3, p4, p5];
         this.players = players;
         this.countries = world;
         this.map = new Map(world, players);
@@ -513,6 +522,7 @@ class Game {
             turn = 0;
             $("#map-menu-reassign").removeClass('active');
             $("#map-menu-atack").removeClass('active');
+            $("#map-menu-end").removeClass('active');
             $("#map-menu-add").addClass('active');
         });
         $("#map-menu-atack").click(function () {
@@ -520,6 +530,7 @@ class Game {
             turn = 1;
             $("#map-menu-add").removeClass('active');
             $("#map-menu-reassign").removeClass('active');
+            $("#map-menu-end").removeClass('active');
             $("#map-menu-atack").addClass('active');
         });
         $("#map-menu-reassign").click(function () {
@@ -527,10 +538,17 @@ class Game {
             turn = 3;
             $("#map-menu-add").removeClass('active');
             $("#map-menu-atack").removeClass('active');
+            $("#map-menu-end").removeClass('active');
             $("#map-menu-reassign").addClass('active');
         });
         $("#map-menu-end").click(function () {
+            //this.round.nextRound(this.players, this.countries);
             console.log('End');
+            $("#map-menu-add").removeClass('active');
+            $("#map-menu-atack").removeClass('active');
+            $("#map-menu-reassign").removeClass('active');
+            $("#map-menu-end").addClass('active');
+
         });
         $("#map").append(`
         <div id="map-players">
@@ -551,7 +569,6 @@ class Game {
             <div id="map-player-cards">Cards</div>
         </div>
         `);
-        //this.round.nextRound(this.players, this.countries);
     }
 }
 
