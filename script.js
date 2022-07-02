@@ -319,6 +319,7 @@ class Game {
             }
             owner = owner();
             var clicked = 0;
+            var fromCountry = '';
             var map = new jvm.Map({
                 map: 'world',
                 container: $('#map'),
@@ -374,8 +375,8 @@ class Game {
                             if (turn == 1) {
                                 if (clicked == 1) {
                                     map.clearSelectedRegions()
-                                    clicked = 0;
-                                } else {
+                                } 
+                                if (clicked != 1 || fromCountry != country) {
                                     country.borders.forEach(borderCountry => {
                                         if (borderCountry.owner != country.owner) {
                                             map.regions[code].element.config.style.selected.fill = "#808080";
@@ -385,6 +386,9 @@ class Game {
                                         }
                                     });
                                     clicked = 1;
+                                    fromCountry = country;
+                                } else {
+                                    fromCountry = '';
                                 }
 
                             } 
