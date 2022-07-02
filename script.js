@@ -373,10 +373,11 @@ class Game {
                     countries.forEach(country => {
                         if (country.code == code) {
                             if (turn == 1) {
-                                if (clicked == 1) {
+                                if (clicked == 1 && fromCountry == country) {
                                     map.clearSelectedRegions()
+                                    var resetClicked = 0;
                                 } 
-                                if (clicked != 1 || fromCountry != country) {
+                                if (clicked != 1 || fromCountry == '') {
                                     country.borders.forEach(borderCountry => {
                                         if (borderCountry.owner != country.owner) {
                                             map.regions[code].element.config.style.selected.fill = "#808080";
@@ -387,10 +388,20 @@ class Game {
                                     });
                                     clicked = 1;
                                     fromCountry = country;
-                                } else {
-                                    fromCountry = '';
+                                } 
+                                if (fromCountry != '') {
+                                    if (fromCountry != country && fromCountry != '') {
+                                        fromCountry.borders.forEach(fromCountryBorderCountry => {
+                                            if (country == fromCountryBorderCountry) {
+                                                fromCountry.atack(country);
+                                            }
+                                        });
+                                    }
                                 }
-
+                                if (resetClicked == 0) {
+                                    fromCountry = '';
+                                    clicked = 0;
+                                }
                             } 
                             if (turn == 0) {
                                 $("#map").append(`
