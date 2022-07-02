@@ -111,3 +111,5 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [ ] Atack as long as you can
 - [ ] Auto round end
 - [ ] FromCountry gets below 0
+- [ ] Vote for next map
+- [ ] Bots
