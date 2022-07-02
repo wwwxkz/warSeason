@@ -30,8 +30,9 @@ class Country {
     }
     atack(who) {
         if (this.troops > 1) {
+            let found = false;
             Object.keys(this.borders).forEach(key => {
-                if (who == this.borders[key].name) {
+                if (who == this.borders[key] && who.owner != this.owner) {
                     this.removeTrops(this.rng());
                     if (this.status() <= 0) {
                         this.borders[key].setTrops(1);
@@ -45,8 +46,12 @@ class Country {
                             this.borders[key].setColor(this.color);
                         }
                     }
-                }
+                    found = true;
+                } 
             });
+            if (found != true) {
+                console.log('This country is not a border of yours or it is your territorty')
+            }
         }
         else {
             console.log('You can not atack with just one troop')
@@ -391,11 +396,18 @@ class Game {
                                 } 
                                 if (fromCountry != '') {
                                     if (fromCountry != country && fromCountry != '') {
-                                        fromCountry.borders.forEach(fromCountryBorderCountry => {
-                                            if (country == fromCountryBorderCountry) {
-                                                fromCountry.atack(country);
-                                            }
+                                        fromCountry.atack(country);
+
+                                        // Fix
+                                        let json = {}
+                                        countries.forEach(country => {
+                                            json[country.code] = country.color;
                                         });
+                                        owner = json;
+
+                                        map.series.regions[0].setValues(owner);
+                                        map.clearSelectedRegions()
+                                        resetClicked = 0;
                                     }
                                 }
                                 if (resetClicked == 0) {
@@ -417,6 +429,7 @@ class Game {
                                 $("#map-menu-popup-add-add").click(function () {
                                     let troops = $("input[type=number][name=map-menu-popup-add-input]").val()
                                     country.addTrops(parseInt(troops));
+                                    $("#map-menu-popup").detach("");
                                 })
                                 $("#map-menu-popup-add-exit").click(function () {
                                     $("#map-menu-popup").detach("");
