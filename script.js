@@ -367,6 +367,13 @@ class Game {
                         }
                     }
                 },
+                onRegionLabelShow: function(e, el, code){
+                    countries.forEach(country => {
+                        if (country.code == code) {
+                            el.html(el.html() + country.status());
+                        }
+                    });
+                },
                 onRegionTipShow: function (e, el, code) {
                     countries.forEach(country => {
                         if (country.code == code) {
@@ -429,6 +436,7 @@ class Game {
                                 $("#map-menu-popup-add-add").click(function () {
                                     let troops = $("input[type=number][name=map-menu-popup-add-input]").val()
                                     country.addTrops(parseInt(troops));
+                                    $("text[data-code=" + country.code + "]").text(country.status());
                                     $("#map-menu-popup").detach("");
                                 })
                                 $("#map-menu-popup-add-exit").click(function () {
