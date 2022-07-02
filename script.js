@@ -277,8 +277,8 @@ il.setBorders([gb, sc, gl]);
 na.setBorders([eg, cg, ea, se, br]);
 eg.setBorders([na, ea, me, se]);
 cg.setBorders([na, ea, sa]);
-ea.setBorders([cg, sa, na, eg]);
-sa.setBorders([cg, ea]);
+ea.setBorders([cg, sa, na, eg, mg]);
+sa.setBorders([cg, ea, mg]);
 mg.setBorders([sa, ea]);
 //  - Asia
 sb.setBorders([ur, cn, mo, ir, yk]);
