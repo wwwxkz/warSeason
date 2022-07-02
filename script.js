@@ -446,7 +446,54 @@ class Game {
                                 })
                             }
                             if (turn == 3) {
-                                return;
+                                if (clicked == 1 && fromCountry == country) {
+                                    map.clearSelectedRegions()
+                                    var resetClicked = 0;
+                                } 
+                                if (clicked != 1 || fromCountry == '') {
+                                    country.borders.forEach(borderCountry => {
+                                        if (borderCountry.owner == country.owner) {
+                                            map.regions[code].element.config.style.selected.fill = "#808080";
+                                            map.setSelectedRegions(code);
+                                            map.regions[borderCountry.code].element.config.style.selected.fill = "#E5E5E5";
+                                            map.setSelectedRegions(borderCountry.code);
+                                        }
+                                    });
+                                    clicked = 1;
+                                    fromCountry = country;
+                                } 
+                                if (fromCountry != '') {
+                                    if (fromCountry != country) {
+                                        $("#map").append(`
+                                        <div id="map-menu-popup">
+                                            <div id="map-menu-popup-reassing">Reassing to ` + country.name + `</div>
+                                            <div>
+                                                <input type="number" name="map-menu-popup-reassing-input">
+                                            </div>
+                                            <div id="map-menu-popup-reassing-reassing">Add</div>
+                                            <div id="map-menu-popup-reassing-exit">Exit</div>
+                                        </div>
+                                        `);
+                                        $("#map-menu-popup-reassing-reassing").click(function () {
+                                            let troops = $("input[type=number][name=map-menu-popup-reassing-input]").val()
+                                            country.addTrops(parseInt(troops));
+                                            //fromCountry.removeTrops(parseInt(troops));
+                                            $("text[data-code=" + country.code + "]").text(country.status());
+                                            //$("text[data-code=" + fromCountry.code + "]").text(fromCountry.status());
+                                            map.clearSelectedRegions()
+                                            $("#map-menu-popup").detach("");
+                                        })
+                                        $("#map-menu-popup-reassing-exit").click(function () {
+                                            map.clearSelectedRegions()
+                                            $("#map-menu-popup").detach("");
+                                        })
+                                        resetClicked = 0;
+                                    }
+                                }
+                                if (resetClicked == 0) {
+                                    fromCountry = '';
+                                    clicked = 0;
+                                }
                             }
                         }
                     });
