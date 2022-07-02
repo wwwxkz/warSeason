@@ -287,7 +287,7 @@ af.setBorders([id, me, ur, cn, uk]);
 yk.setBorders([kc, ir, sb]);
 kc.setBorders([yk, ir, mo, jp, ak]);
 ir.setBorders([mo, kc, yk, sb]);
-mo.setBorders([kc, ir, cn, sb]);
+mo.setBorders([kc, ir, cn, sb, jp]);
 jp.setBorders([mo, kc]);
 cn.setBorders([mo, sb, ur, af, id, sm]);
 id.setBorders([cn, sm, af, me]);
