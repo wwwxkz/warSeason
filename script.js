@@ -407,13 +407,18 @@ class Game {
                                 $("#map").append(`
                                 <div id="map-menu-popup">
                                     <div id="map-menu-popup-add">Add to ` + country.name + `</div>
-                                    <div id="map-menu-popup-input">
-                                        <input type="text">
+                                    <div>
+                                        <input type="number" name="map-menu-popup-add-input">
                                     </div>
-                                    <div id="map-menu-popup-exit">Exit</div>
+                                    <div id="map-menu-popup-add-add">Add</div>
+                                    <div id="map-menu-popup-add-exit">Exit</div>
                                 </div>
                                 `);
-                                $("#map-menu-popup-exit").click(function () {
+                                $("#map-menu-popup-add-add").click(function () {
+                                    let troops = $("input[type=number][name=map-menu-popup-add-input]").val()
+                                    country.addTrops(parseInt(troops));
+                                })
+                                $("#map-menu-popup-add-exit").click(function () {
                                     $("#map-menu-popup").detach("");
                                 })
                             }

@@ -1,3 +1,9 @@
+.jvectormap-region.jvectormap-element {
+  text-shadow: #000 2px 2px 5px;
+}
+text.jvectormap-region.jvectormap-element {
+  fill: #ffffff;
+}
 body {
   margin: 0;
 }
