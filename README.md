@@ -98,6 +98,10 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [X] Replace 'you can not atack with just one troop' by a custom popup
 - [X] Troops by round
 - [X] Fix fromCountry troops when reassing
+- [ ] Popup after conquered to reassign
+- [ ] Server / Client
+- [ ] Add players by IP
+- [ ] Verify if everyone is ready before starting a new game
 - [ ] Turn steps
 - [ ] Player and total troops to interface
 - [ ] Events
@@ -105,6 +109,5 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [ ] Turn time
 - [ ] Use player color instead of both player and country
 - [ ] Atack as long as you can
-- [ ] Server / Client
-- [ ] Add players by IP
-- [ ] Verify if everyone is ready before starting a new game
+- [ ] Auto round end
+- [ ] FromCountry gets below 0
