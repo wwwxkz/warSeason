@@ -23,10 +23,24 @@ class Country {
         this.troops = set;
     }
     addTrops(add) {
-        this.troops += add;
+        this.troops += parseInt(add);
     }
     removeTrops(remove) {
         this.troops -= remove;
+    }
+    reassignTrops(reassign, who) {
+        if (reassign < this.troops) {
+            this.removeTrops(reassign);
+            who.addTrops(reassign);
+            return {
+                status: true,
+                message: ''
+            }
+        }
+        return {
+            status: false,
+            message: 'You do not have that many'
+        }
     }
     atack(who) {
         if (this.troops > 1) {
@@ -498,24 +512,31 @@ class Game {
                                 }
                                 if (fromCountry != '') {
                                     if (fromCountry != country) {
+                                        var fromCountryLocal = fromCountry;
                                         $("#map").append(`
                                         <div id="map-menu-popup">
                                             <div id="map-menu-popup-reassing">Reassing to ` + country.name + `</div>
                                             <div>
                                                 <input type="number" name="map-menu-popup-reassing-input">
                                             </div>
-                                            <div id="map-menu-popup-reassing-reassing">Add</div>
+                                            <div id="map-menu-popup-reassing-reassing">Reassing</div>
                                             <div id="map-menu-popup-reassing-exit">Exit</div>
                                         </div>
                                         `);
                                         $("#map-menu-popup-reassing-reassing").click(function () {
                                             let troops = $("input[type=number][name=map-menu-popup-reassing-input]").val()
-                                            country.addTrops(parseInt(troops));
-                                            //fromCountry.removeTrops(parseInt(troops));
-                                            $("text[data-code=" + country.code + "]").text(country.status());
-                                            //$("text[data-code=" + fromCountry.code + "]").text(fromCountry.status());
-                                            map.clearSelectedRegions()
-                                            $("#map-menu-popup").detach("");
+                                            const { status, message } = fromCountryLocal.reassignTrops(troops, country);
+                                            if (status == true) {
+                                                $("text[data-code=" + country.code + "]").text(country.status());
+                                                $("text[data-code=" + fromCountryLocal.code + "]").text(fromCountryLocal.status());
+                                                map.clearSelectedRegions()
+                                            }
+                                            if (status == false) {
+                                                $("#map-menu-popup").append(`
+                                                 <div id="map-menu-popup-add"><a>` + message + `</a></div>                                            
+                                                `);
+                                            }
+
                                         })
                                         $("#map-menu-popup-reassing-exit").click(function () {
                                             map.clearSelectedRegions()
