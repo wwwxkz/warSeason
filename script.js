@@ -238,7 +238,7 @@ const eas = new Country('Eastern Australia', 'EAS');
 const is = new Country('Indonesia', 'IS');
 const ng = new Country('New Guinea', 'NG');
 //  - North America
-ca.setBorders([wus, eus]);
+ca.setBorders([wus, eus, co]);
 wus.setBorders([ab, eus, ca, on]);
 eus.setBorders([wus, on, ca, qc]);
 qc.setBorders([eus, on]);
@@ -413,6 +413,8 @@ class Game {
                                         owner = json;
 
                                         map.series.regions[0].setValues(owner);
+                                        $("text[data-code=" + country.code + "]").text(country.status());
+                                        $("text[data-code=" + fromCountry.code + "]").text(fromCountry.status());
                                         map.clearSelectedRegions()
                                         resetClicked = 0;
                                     }
