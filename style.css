@@ -4,6 +4,12 @@
 text.jvectormap-region.jvectormap-element {
   fill: #ffffff;
 }
+.jvectormap-zoomin, .jvectormap-zoomout {
+  padding: 30px;
+}
+.jvectormap-zoomout {
+  top: 85px;
+}
 body {
   margin: 0;
 }
