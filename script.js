@@ -505,6 +505,7 @@ class Game {
             <div id="map-menu-add"><a>Add</a></div>
             <div id="map-menu-atack"><a>Atack</a></div>
             <div id="map-menu-reassign"><a>Reassign</a></div>
+            <div id="map-menu-end"><a>End</a></div>
         </div>
         `);
         $("#map-menu-add").click(function () {
@@ -513,21 +514,24 @@ class Game {
             $("#map-menu-reassign").removeClass('active');
             $("#map-menu-atack").removeClass('active');
             $("#map-menu-add").addClass('active');
-        })
+        });
         $("#map-menu-atack").click(function () {
             //$("#map-menu").html("");
             turn = 1;
             $("#map-menu-add").removeClass('active');
             $("#map-menu-reassign").removeClass('active');
             $("#map-menu-atack").addClass('active');
-        })
+        });
         $("#map-menu-reassign").click(function () {
             //$("#map-menu").html("");
             turn = 3;
             $("#map-menu-add").removeClass('active');
             $("#map-menu-atack").removeClass('active');
             $("#map-menu-reassign").addClass('active');
-        })
+        });
+        $("#map-menu-end").click(function () {
+            console.log('End');
+        });
         $("#map").append(`
         <div id="map-players">
             <div id="map-players-player-1">Player 1</div>
@@ -535,7 +539,18 @@ class Game {
             <div id="map-players-player-3">Player 3</div>
         </div>
         `);
-
+        $("#map").append(`
+        <div id="map-settings">
+            <div id="map-settings-button">Settings</div>
+        </div>
+        `);
+        $("#map").append(`
+        <div id="map-player">
+            <div id="map-player-total-troops">Total troops</div>
+            <div id="map-player-territories">Territories</div>
+            <div id="map-player-cards">Cards</div>
+        </div>
+        `);
         //this.round.nextRound(this.players, this.countries);
     }
 }
