@@ -92,3 +92,14 @@ head {
   top: 10px;
   right: 10px;
 }
+
+#map-menu-popup-select {
+  display: flex;
+  flex-direction: row;
+}
+
+#map-menu-popup-select > div {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+}

@@ -99,6 +99,7 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [X] Troops by round
 - [X] Fix fromCountry troops when reassing
 - [ ] Popup after conquered to reassign
+- [ ] Move buildMaps to another file
 - [ ] Server / Client
 - [ ] Add players by IP
 - [ ] Verify if everyone is ready before starting a new game

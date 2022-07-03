@@ -1,4 +1,4 @@
-jQuery.fn.vectorMap("addMap", "world", {
+jQuery.fn.vectorMap("addMap", "risk-world", {
     width: "1920",
     height: "1080",
     paths: {

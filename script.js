@@ -215,118 +215,238 @@ class Map {
     }
 }
 
-// Word
-//  - North America
-const ca = new Country('Central America', 'CA');
-const wus = new Country('Western United States', 'WUS');
-const eus = new Country('Eastern United States', 'EUS');
-const qc = new Country('Quebec', 'QC');
-const on = new Country('Ontario', 'ON');
-const ab = new Country('Alberta', 'AB');
-const ak = new Country('Alaska', 'AK');
-const nwt = new Country('North West Territory', 'NWT');
-const gl = new Country('Greenland', 'GL');
-//  - South America
-const co = new Country('Colombia', 'CO');
-const ar = new Country('Argentina', 'AR');
-const br = new Country('Brazil', 'BR');
-const pe = new Country('Peru', 'PE');
-//  - Europe
-const uk = new Country('Ukraine', 'UK');
-const sc = new Country('Scandinavia', 'SC');
-const ne = new Country('Northern Europe', 'NE');
-const se = new Country('Southern Europe', 'SE');
-const we = new Country('Western Europe', 'WE');
-const gb = new Country('Great Britain', 'GB');
-const il = new Country('Iceland', 'IL');
-//  - Africa
-const na = new Country('North Africa', 'NA');
-const eg = new Country('Egypt', 'EG');
-const cg = new Country('Congo', 'CG');
-const ea = new Country('East Africa', 'EA');
-const sa = new Country('South Africa', 'SA');
-const mg = new Country('Madagascar', 'MG');
-//  - Asia
-const sb = new Country('Siberia', 'SB');
-const ur = new Country('Ural', 'UR');
-const af = new Country('Afghanistan', 'AF');
-const yk = new Country('Yakutsk', 'YK');
-const kc = new Country('Kamchatka', 'KC');
-const ir = new Country('Irkutsk', 'IR');
-const mo = new Country('Mongolia', 'MO');
-const jp = new Country('Japan', 'JP');
-const cn = new Country('China', 'CN');
-const id = new Country('India', 'ID');
-const me = new Country('Middle East', 'ME');
-const sm = new Country('Siam', 'SM');
-//  - Australis
-const wa = new Country('Western Australia', 'WA');
-const eas = new Country('Eastern Australia', 'EAS');
-const is = new Country('Indonesia', 'IS');
-const ng = new Country('New Guinea', 'NG');
-//  - North America
-ca.setBorders([wus, eus, co]);
-wus.setBorders([ab, eus, ca, on]);
-eus.setBorders([wus, on, ca, qc]);
-qc.setBorders([eus, on]);
-on.setBorders([eus, qc, wus, ab, nwt]);
-ab.setBorders([on, wus, nwt, ak]);
-ak.setBorders([ab, nwt, kc]);
-nwt.setBorders([ak, ab, on]);
-gl.setBorders([qc, on, nwt, il]);
-//  - South America
-co.setBorders([br, pe, ca]);
-ar.setBorders([br, pe]);
-br.setBorders([ar, co, pe, na]);
-pe.setBorders([br, ar, co]);
-//  - Europe
-uk.setBorders([ne, sc, se, me, af, ur]);
-sc.setBorders([uk, il, ne, gb]);
-ne.setBorders([se, we, gb, sc, uk]);
-se.setBorders([we, ne, uk, me, eg, na]);
-we.setBorders([se, ne, gb]);
-gb.setBorders([il, we, sc, ne]);
-il.setBorders([gb, sc, gl]);
-//  - Africa
-na.setBorders([eg, cg, ea, se, br, we]);
-eg.setBorders([na, ea, me, se]);
-cg.setBorders([na, ea, sa]);
-ea.setBorders([cg, sa, na, eg, mg]);
-sa.setBorders([cg, ea, mg]);
-mg.setBorders([sa, ea]);
-//  - Asia
-sb.setBorders([ur, cn, mo, ir, yk]);
-ur.setBorders([sb, cn, af, uk]);
-af.setBorders([id, me, ur, cn, uk]);
-yk.setBorders([kc, ir, sb]);
-kc.setBorders([yk, ir, mo, jp, ak]);
-ir.setBorders([mo, kc, yk, sb]);
-mo.setBorders([kc, ir, cn, sb, jp]);
-jp.setBorders([mo, kc]);
-cn.setBorders([mo, sb, ur, af, id, sm]);
-id.setBorders([cn, sm, af, me]);
-me.setBorders([af, id, eg, se, uk]);
-sm.setBorders([cn, id, is]);
-//  - Australis
-wa.setBorders([eas, is, ng]);
-eas.setBorders([ng, wa]);
-is.setBorders([wa, ng, sm]);
-ng.setBorders([is, eas, wa]);
-//
-const world = [
-    // North America
-    ca, wus, eus, qc, on, ab, ak, nwt, gl,
-    // South America
-    co, ar, br, pe,
-    // Europe
-    uk, sc, ne, se, we, gb, il,
-    // Africa
-    na, eg, cg, ea, sa, mg,
-    // Asia
-    sb, ur, af, yk, kc, ir, mo, jp, cn, id, me, sm,
-    // Australis
-    wa, eas, is, ng
-];
+function buildMaps(selectMap) {
+    if (selectMap == 1) {
+        // War World
+        //  - North America
+        const mx = new Country('México', 'MX');
+        const ca = new Country('Califórnia', 'CA');
+        const ny = new Country('Nova York', 'NY');
+        const lb = new Country('Labrador', 'LB');
+        const va = new Country('Vancouver', 'VA');
+        const ot = new Country('Ottawa', 'OT');
+        const mk = new Country('Mackenzie', 'MK');
+        const ak = new Country('Alaska', 'AK');
+        const gr = new Country('Groelândia', 'GR');
+        //  - South America
+        const ar = new Country('Argentina', 'AR');
+        const br = new Country('Brasil', 'BR');
+        const co = new Country('Colombia', 'CO');
+        const pe = new Country('Peru', 'PE');
+        //  - Europe
+        const is = new Country('Islândia', 'IS');
+        const ig = new Country('Inglaterra', 'IG');
+        const fr = new Country('França', 'FR');
+        const al = new Country('Alemanha', 'AL');
+        const po = new Country('Polônia', 'PO');
+        const ms = new Country('Moscou', 'MS');
+        const sc = new Country('Suécia', 'SC');
+        //  - Africa
+        const ag = new Country('Argélia', 'AG');
+        const eg = new Country('Egíto', 'EG');
+        const su = new Country('Sudão', 'SU');
+        const cg = new Country('Congo', 'CG');
+        const as = new Country('África do Sul', 'AS');
+        const mg = new Country('Madagascar', 'MG');
+        //  - Asia
+        const sb = new Country('Sibéria', 'SB');
+        const vd = new Country('Vladvostok', 'VD');
+        const cn = new Country('China', 'CN');
+        const jp = new Country('Japão', 'JP');
+        const vi = new Country('Vietnã', 'VI');
+        const id = new Country('Índia', 'ID');
+        const om = new Country('Oriente Médio', 'OM');
+        const aa = new Country('Aral', 'AA');
+        const ok = new Country('Omsk', 'OK');
+        const dd = new Country('Dudinka', 'DD');
+        const mo = new Country('Mongolia', 'MO');
+        const tc = new Country('Tchita', 'TC');
+        //  - Australis
+        const au = new Country('Austrália', 'AU');
+        const sm = new Country('Sumatra', 'sm');
+        const bo = new Country('Borneo', 'BO');
+        const ng = new Country('Nova Guiné', 'NG');
+        //  - North America
+        mx.setBorders([co, ca, ny]);
+        ca.setBorders([ny, mx, va, ot]);
+        ny.setBorders([lb, ot, mx, ca]);
+        lb.setBorders([gr, ot, ny]);
+        va.setBorders([ca, ot, mk, ak]);
+        ot.setBorders([ca, ny, lb, mk, va]);
+        mk.setBorders([ot, va, ak, gr]);
+        ak.setBorders([va, mk, vd]);
+        gr.setBorders([lb, is, mk]);
+        //  - South America
+        ar.setBorders([br, pe]);
+        br.setBorders([pe, ar, co, ag]);
+        co.setBorders([br, pe, mx]);
+        pe.setBorders([br, pe, ca]);
+        //  - Europe
+        is.setBorders([gr, ig]);
+        ig.setBorders([is, fr, al, sc]);
+        fr.setBorders([ag, al, po, ig]);
+        al.setBorders([fr, po, ig]);
+        po.setBorders([fr, al, ms,  eg, om]);
+        ms.setBorders([sc, po, om, ok, aa]);
+        sc.setBorders([mo, ig]);
+        //  - Africa
+        ag.setBorders([fr, eg, su, cg, br]);
+        eg.setBorders([ag, su, po, om, fr]);
+        su.setBorders([eg, ag, cg, mg]);
+        cg.setBorders([su, ag, as]);
+        as.setBorders([mg, cg, su]);
+        mg.setBorders([su, as]);
+        //  - Asia
+        sb.setBorders([vd, dd, tc]);
+        vd.setBorders([sb, tc, cn, jp, ak]);
+        cn.setBorders([mo, jp, vd, vi, id, aa, ok]);
+        jp.setBorders([cn, vd]);
+        vi.setBorders([cn, id]);
+        id.setBorders([cn, vi, aa, om]);
+        ok.setBorders([ms, aa, dd, cn, mo]);
+        aa.setBorders([ok, ms, cn, om, id]);
+        om.setBorders([id, aa, ms, eg, po]);
+        dd.setBorders([ok, mo, tc, sb]);
+        mo.setBorders([cn, tc, ok, dd]);
+        tc.setBorders([dd, mo, sb, vd, cn]);
+        //  - Australis
+        au.setBorders([sm, bo, ng]);
+        sm.setBorders([id, au]);
+        bo.setBorders([vi, au, ng]);
+        ng.setBorders([au, bo]);
+        //
+        return [
+            // North America
+            mx, ca, ny, lb, va, ot, mk, ak, gr,
+            // South America
+            ar, br, co, pe,
+            // Europe
+            is, ig, fr, al, po, ms, sc,
+            // Africa
+            ag, eg, su, cg, as, mg,
+            // Asia
+            sb, vd, cn, jp, vi, id, om, aa, ok, dd, mo, tc,
+            // Australis
+            au, sm, bo, ng
+        ];
+    }
+    if (selectMap == 2) {
+        // Risk World
+        //  - North America
+        const ca = new Country('Central America', 'CA');
+        const wus = new Country('Western United States', 'WUS');
+        const eus = new Country('Eastern United States', 'EUS');
+        const qc = new Country('Quebec', 'QC');
+        const on = new Country('Ontario', 'ON');
+        const ab = new Country('Alberta', 'AB');
+        const ak = new Country('Alaska', 'AK');
+        const nwt = new Country('North West Territory', 'NWT');
+        const gl = new Country('Greenland', 'GL');
+        //  - South America
+        const co = new Country('Colombia', 'CO');
+        const ar = new Country('Argentina', 'AR');
+        const br = new Country('Brazil', 'BR');
+        const pe = new Country('Peru', 'PE');
+        //  - Europe
+        const uk = new Country('Ukraine', 'UK');
+        const sc = new Country('Scandinavia', 'SC');
+        const ne = new Country('Northern Europe', 'NE');
+        const se = new Country('Southern Europe', 'SE');
+        const we = new Country('Western Europe', 'WE');
+        const gb = new Country('Great Britain', 'GB');
+        const il = new Country('Iceland', 'IL');
+        //  - Africa
+        const na = new Country('North Africa', 'NA');
+        const eg = new Country('Egypt', 'EG');
+        const cg = new Country('Congo', 'CG');
+        const ea = new Country('East Africa', 'EA');
+        const sa = new Country('South Africa', 'SA');
+        const mg = new Country('Madagascar', 'MG');
+        //  - Asia
+        const sb = new Country('Siberia', 'SB');
+        const ur = new Country('Ural', 'UR');
+        const af = new Country('Afghanistan', 'AF');
+        const yk = new Country('Yakutsk', 'YK');
+        const kc = new Country('Kamchatka', 'KC');
+        const ir = new Country('Irkutsk', 'IR');
+        const mo = new Country('Mongolia', 'MO');
+        const jp = new Country('Japan', 'JP');
+        const cn = new Country('China', 'CN');
+        const id = new Country('India', 'ID');
+        const me = new Country('Middle East', 'ME');
+        const sm = new Country('Siam', 'SM');
+        //  - Australis
+        const wa = new Country('Western Australia', 'WA');
+        const eas = new Country('Eastern Australia', 'EAS');
+        const is = new Country('Indonesia', 'IS');
+        const ng = new Country('New Guinea', 'NG');
+        //  - North America
+        ca.setBorders([wus, eus, co]);
+        wus.setBorders([ab, eus, ca, on]);
+        eus.setBorders([wus, on, ca, qc]);
+        qc.setBorders([eus, on]);
+        on.setBorders([eus, qc, wus, ab, nwt]);
+        ab.setBorders([on, wus, nwt, ak]);
+        ak.setBorders([ab, nwt, kc]);
+        nwt.setBorders([ak, ab, on]);
+        gl.setBorders([qc, on, nwt, il]);
+        //  - South America
+        co.setBorders([br, pe, ca]);
+        ar.setBorders([br, pe]);
+        br.setBorders([ar, co, pe, na]);
+        pe.setBorders([br, ar, co]);
+        //  - Europe
+        uk.setBorders([ne, sc, se, me, af, ur]);
+        sc.setBorders([uk, il, ne, gb]);
+        ne.setBorders([se, we, gb, sc, uk]);
+        se.setBorders([we, ne, uk, me, eg, na]);
+        we.setBorders([se, ne, gb]);
+        gb.setBorders([il, we, sc, ne]);
+        il.setBorders([gb, sc, gl]);
+        //  - Africa
+        na.setBorders([eg, cg, ea, se, br, we]);
+        eg.setBorders([na, ea, me, se]);
+        cg.setBorders([na, ea, sa]);
+        ea.setBorders([cg, sa, na, eg, mg]);
+        sa.setBorders([cg, ea, mg]);
+        mg.setBorders([sa, ea]);
+        //  - Asia
+        sb.setBorders([ur, cn, mo, ir, yk]);
+        ur.setBorders([sb, cn, af, uk]);
+        af.setBorders([id, me, ur, cn, uk]);
+        yk.setBorders([kc, ir, sb]);
+        kc.setBorders([yk, ir, mo, jp, ak]);
+        ir.setBorders([mo, kc, yk, sb]);
+        mo.setBorders([kc, ir, cn, sb, jp]);
+        jp.setBorders([mo, kc]);
+        cn.setBorders([mo, sb, ur, af, id, sm]);
+        id.setBorders([cn, sm, af, me]);
+        me.setBorders([af, id, eg, se, uk]);
+        sm.setBorders([cn, id, is]);
+        //  - Australis
+        wa.setBorders([eas, is, ng]);
+        eas.setBorders([ng, wa]);
+        is.setBorders([wa, ng, sm]);
+        ng.setBorders([is, eas, wa]);
+        //
+        return [
+            // North America
+            ca, wus, eus, qc, on, ab, ak, nwt, gl,
+            // South America
+            co, ar, br, pe,
+            // Europe
+            uk, sc, ne, se, we, gb, il,
+            // Africa
+            na, eg, cg, ea, sa, mg,
+            // Asia
+            sb, ur, af, yk, kc, ir, mo, jp, cn, id, me, sm,
+            // Australis
+            wa, eas, is, ng
+        ];
+    }
+
+    
+}
 
 class Game {
     constructor() {
@@ -335,15 +455,46 @@ class Game {
         const p3 = new Player('alon');
         const p4 = new Player('ket');
         const p5 = new Player('ramon');
-        const players = [p1, p2, p3, p4, p5];
-        this.players = players;
-        this.countries = world;
-        this.map = new Map(world, players);
-        this.round = new Round();
-        this.turn(this.countries, this.round, this.players);
+        this.players = [p1, p2, p3, p4, p5];;
+        this.selectMap(this.turn, this.players);          
     }
-    turn(countries, round, players) {
+    selectMap(turn, players) {
+        var map = ['war-world', 1];
+        $("#map").append(`
+        <div id="map-menu-popup">
+            <div>Select Map</div>
+            <div id="map-menu-popup-select">
+                <div id="map-menu-popup-select-map-1">
+                    <img src="" alt="War"/>              
+                </div> &nbsp &nbsp
+                <div id="map-menu-popup-select-map-2">
+                    <img src="" alt="Risk"/>
+                </div>
+            </div>
+            <div id="map-menu-popup-select-ready">Ready</div>
+            <div id="map-menu-popup-select-exit">Exit</div>
+        </div>
+        `);
+        $("#map-menu-popup-select-map-1").click(function () {
+            map = ['war-world', 1];
+        })
+        $("#map-menu-popup-select-map-2").click(function () {
+            map = ['risk-world', 2];
+        })
+        $("#map-menu-popup-select-ready").click(async function () {
+            this.countries = buildMaps(map[1]);
+            this.map = new Map(this.countries, players);
+            this.round = new Round();
+            $("#map-menu-popup").detach("");
+            turn(this.countries, this.round, players, map[0]);
+        })
+        $("#map-menu-popup-select-exit").click(function () {
+            $("#map-menu-popup").detach("");
+        })
+    }
+    turn(countries, round, players, map) {
         var turn = 0;
+        var localMap = map;
         $(function () {
             function owner() {
                 let json = {}
@@ -356,7 +507,7 @@ class Game {
             var clicked = 0;
             var fromCountry = '';
             var map = new jvm.Map({
-                map: 'world',
+                map: localMap,
                 container: $('#map'),
                 series: {
                     regions: [{
