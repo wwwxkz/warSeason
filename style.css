@@ -25,7 +25,7 @@ head {
   height: 100% !important;
 }
 
-#map-menu, #map-players, #map-menu-popup, #map-settings, #map-player {
+#map-menu, #map-players, #map-menu-popup, #map-settings, #map-player, #map-settings-popup {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -68,11 +68,19 @@ head {
 #map-players > div, #map-menu-popup > div, #map-player > div {
   margin-bottom: 30px;
 }
-#map-players > div:last-child, #map-menu-popup > div:last-child, #map-player > div:last-child {
+#map-settings-popup > div { 
+  margin-bottom: 10px;
+}
+#map-players > div:last-child, #map-menu-popup > div:last-child, #map-player > div:last-child, #map-settings-popup > div:last-child {
   margin-bottom: 0px;
 }
 
-#map-menu-popup {
+#map-settings-popup > div {
+  display: flex;
+  flex-direction: row;
+}
+
+#map-menu-popup, #map-settings-popup {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -108,7 +116,7 @@ head {
   .jvectormap-zoomin, .jvectormap-zoomout {
     padding: 10px;
   }
-  #map-menu, #map-players, #map-menu-popup, #map-settings, #map-player {
+  #map-menu, #map-players, #map-menu-popup, #map-settings, #map-player, #map-settings-popup {
     padding: 10px;
   }
   .jvectormap-zoomout {

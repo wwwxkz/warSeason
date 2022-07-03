@@ -761,6 +761,58 @@ class Game {
             <div id="map-settings-button">Settings</div>
         </div>
         `);
+        $("#map-settings-button").click(function () {
+            $("#map").append(`
+            <div id="map-settings-popup">
+                <div>Player Colors</div>
+                <div>
+                    <div>Color 1</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 2</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 3</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 4</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 5</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 6</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 7</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 8</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 9</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div>
+                    <div>Color 10</div>
+                    <input type="number" name="map-settings-color-1">
+                </div>
+                <div id="map-settings-popup-update">Update</div>
+                <div id="map-settings-popup-exit">Exit</div>
+            </div>
+            `);
+            $("#map-settings-popup-exit").click(function () {
+                $("#map-settings-popup").detach("");
+            })
+        });
         $("#map").append(`
         <div id="map-player">
             <div id="map-player-total-troops">Total troops</div>
