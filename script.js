@@ -301,7 +301,7 @@ function buildMaps(selectMap) {
         vd.setBorders([sb, tc, cn, jp, ak]);
         cn.setBorders([mo, jp, vd, vi, id, aa, ok]);
         jp.setBorders([cn, vd]);
-        vi.setBorders([cn, id]);
+        vi.setBorders([cn, id, bo]);
         id.setBorders([cn, vi, aa, om]);
         ok.setBorders([ms, aa, dd, cn, mo]);
         aa.setBorders([ok, ms, cn, om, id, dd]);
