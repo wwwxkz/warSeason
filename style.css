@@ -122,4 +122,7 @@ head {
   .jvectormap-zoomout {
     top: 45px;
   }
+  #map-players > div, #map-menu-popup > div, #map-player > div {
+    margin-bottom: 15px;
+  }
 }
