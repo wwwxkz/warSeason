@@ -112,7 +112,7 @@ head {
   background-color: red;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 100px) {
   .jvectormap-zoomin, .jvectormap-zoomout {
     padding: 10px;
   }

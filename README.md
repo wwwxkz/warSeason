@@ -98,6 +98,7 @@ MEXT comes from Monbukagakusho, a Japanese scholarships that brought everyone to
 - [X] Replace 'you can not atack with just one troop' by a custom popup
 - [X] Troops by round
 - [X] Fix fromCountry troops when reassing
+- [X] Set custom player colors
 - [ ] Popup after conquered to reassign
 - [ ] Move buildMaps to another file
 - [ ] Server / Client
