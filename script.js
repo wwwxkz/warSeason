@@ -304,9 +304,9 @@ function buildMaps(selectMap) {
         vi.setBorders([cn, id]);
         id.setBorders([cn, vi, aa, om]);
         ok.setBorders([ms, aa, dd, cn, mo]);
-        aa.setBorders([ok, ms, cn, om, id]);
+        aa.setBorders([ok, ms, cn, om, id, dd]);
         om.setBorders([id, aa, ms, eg, po]);
-        dd.setBorders([ok, mo, tc, sb]);
+        dd.setBorders([ok, mo, tc, sb, aa ,cn]);
         mo.setBorders([cn, tc, ok, dd]);
         tc.setBorders([dd, mo, sb, vd, cn]);
         //  - Australis
