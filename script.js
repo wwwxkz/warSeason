@@ -533,13 +533,13 @@ class Game {
                                                 $("text[data-code=" + country.code + "]").text(country.status());
                                                 $("text[data-code=" + fromCountryLocal.code + "]").text(fromCountryLocal.status());
                                                 map.clearSelectedRegions()
+                                                $("#map-menu-popup").detach("");
                                             }
                                             if (status == false) {
                                                 $("#map-menu-popup").append(`
                                                  <div id="map-menu-popup-add"><a>` + message + `</a></div>                                            
                                                 `);
                                             }
-
                                         })
                                         $("#map-menu-popup-reassing-exit").click(function () {
                                             map.clearSelectedRegions()
