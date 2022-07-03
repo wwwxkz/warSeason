@@ -275,7 +275,7 @@ ak.setBorders([ab, nwt, kc]);
 nwt.setBorders([ak, ab, on]);
 gl.setBorders([qc, on, nwt, il]);
 //  - South America
-co.setBorders([br, pe]);
+co.setBorders([br, pe, ca]);
 ar.setBorders([br, pe]);
 br.setBorders([ar, co, pe, na]);
 pe.setBorders([br, ar, co]);
