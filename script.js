@@ -477,9 +477,13 @@ class Game {
         `);
         $("#map-menu-popup-select-map-1").click(function () {
             map = ['war-world', 1];
+            $("#map-menu-popup-select-map-2").removeClass('active-background');
+            $("#map-menu-popup-select-map-1").addClass('active-background');
         })
         $("#map-menu-popup-select-map-2").click(function () {
             map = ['risk-world', 2];
+            $("#map-menu-popup-select-map-1").removeClass('active-background');
+            $("#map-menu-popup-select-map-2").addClass('active-background');
         })
         $("#map-menu-popup-select-ready").click(async function () {
             this.countries = buildMaps(map[1]);
