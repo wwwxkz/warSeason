@@ -103,3 +103,15 @@ head {
   height: 50px;
   background-color: red;
 }
+
+@media (max-width: 600px) {
+  .jvectormap-zoomin, .jvectormap-zoomout {
+    padding: 10px;
+  }
+  #map-menu, #map-players, #map-menu-popup, #map-settings, #map-player {
+    padding: 10px;
+  }
+  .jvectormap-zoomout {
+    top: 45px;
+  }
+}
