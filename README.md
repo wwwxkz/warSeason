@@ -1,5 +1,9 @@
 # Play
 
+### Online
+
+Play the game without downloading https://wwwxkz.github.io/warSeason/
+
 ### Download
 
 You can download by clicking <a href="https://github.com/wwwxkz/warSeason/archive/refs/heads/main.zip">here</a>, then extract the .zip file, and open index.html 
