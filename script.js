@@ -455,7 +455,7 @@ class Game {
         const p3 = new Player('alon');
         const p4 = new Player('ket');
         const p5 = new Player('ramon');
-        this.players = [p1, p2, p3, p4, p5];;
+        this.players = [p1, p2, p3, p4, p5];
         this.selectMap(this.turn, this.players);          
     }
     selectMap(turn, players) {
